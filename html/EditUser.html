@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <title>User Registration Page</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/AdoptiveStyle.css">
+  <link rel="stylesheet" href="../css/Idcard.css">
+  <link rel="stylesheet" href="../css/GeneralStyle.css">
+  <link rel="stylesheet" href="../css/FitForm.css">
+  <link rel="stylesheet" href="../css/Pop.css">
+
+
+  <script src="../js/script.js" defer></script>
+  <script src="../js/Pop.js" defer></script>
+
+  <script type="module" src="../js/UserRegistration.js" defer></script>
+  <script src="../js/IDHelper.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
+      Eejo Swimming Portal
+    </div>
+
+    <div class="profile" onclick="">
+      <div class="dark-mode-toggle">
+
+        <img src="../images/profile.jpg" alt="Profile" id="UserPhoto" onclick="toggleProfilePopup()">
+        <div class="profile-popup" id="profilePopup">
+          <label id="lblUserName"> </label>
+           <a href="EditUser.html">Edit Profile</a>
+          <a onclick="{ openPrintWindow('UserID',user,'EejoIDcardDisp','') }">Download ID</a>
+          <a href="../index.html">Logout</a>
+        </div>
+      </div>
+    </div>
+    <label aria-disabled="true" class="dark-mode-toggle" onclick="toggleDarkMode()"> 🌗
+
+  </header>
+  <nav>
+
+    <div class="sidebar" id="sidebar">
+      <!-- <div class="grid">         -->
+      <button onclick="location.href='home.html'"> Home</button>
+      <button onclick="location.href='event_registration.html'"> Event Registration</button>
+      <button onclick="location.href='password_recovery.html'"> Password Recovery</button>
+      <button onclick="location.href='reports.html'"> Reports</button>
+      <!-- </div>     -->
+    </div>
+  </nav>
+  <div class="container">
+    <!-- <div class="grid"> -->
+    <form id="updateForm">
+      <h1>Edit Profile</h1>
+
+      <label>Swimmer ID:
+        <input type="text" disabled="true" id="swimmer_id" required>
+      </label>
+      <label>Name:
+        <input type="text" id="name" disabled="true" required>
+      </label>
+      <label>Email:
+        <input type="email" id="email">
+      </label>
+
+      <label>Date of Birth:
+        <input type="date" id="dob" required>
+      </label>
+      <label>Gender:
+        <select id="gender" required>
+          <option value="1">Male</option>
+          <option value="2">Female</option>
+          <option value="3">Other</option>
+        </select>
+      </label>
+      <label>Phone:
+        <input type="tel" id="phone">
+      </label>
+      <label>School Name:
+        <input type="text" id="schoolname">
+      </label>
+      <label>Club Name:
+        <input type="text" id="clubname">
+      </label>
+      <label>Password:
+        <input type="password" id="password" required>
+      </label>
+      <label>Re-enter Password:
+        <input type="password" id="confirmPassword" required>
+      </label>
+      <label>Role:
+        <select id="role" disabled>
+          <option value="1">Swimmer</option>
+          <option value="2">Parent</option>
+          <option value="3">Coach</option>
+        </select>
+      </label>
+
+      <label>Photo Upload:
+        <img id="UploadedPhoto"  style= "margin-left:45%" width=100PX  src="../images/profile.jpg">
+        <input type="file" id="photoFile" accept="image/*">
+        <progress id="photoProgress" value="0" max="100" style="width: 100%;"></progress>
+        <div id="photoPreview"></div>
+      </label>
+
+      <label>ID1 Upload:
+        <img id="UploadedID1"  style= "margin-left:50%" width=100PX  src="../images/profile.jpg">
+        <input type="file" id="id1File" accept="image/*">
+        <progress id="id1Progress" value="0" max="100" style="width: 100%;"></progress>
+        <div id="id1Preview"></div>
+      </label>
+
+      <label>ID2 Upload:
+        <img id="UploadedID2"  style= "margin-left:50%" width=100PX  src="../images/profile.jpg">
+        <input type="file" id="id2File" accept="image/*">
+        <progress id="id2Progress" value="0" max="100" style="width: 100%;"></progress>
+        <div id="id2Preview"></div>
+      </label>
+      <button type="submit" onclick="EditSwimmer(event)">Update</button>
+    </form>
+    <!-- </div> -->
+  </div>
+
+  <div id="EejoIDcardDisp" class="id-card" style="display: none; color: black; background-color: rgb(219, 215, 247);">
+    <img id="ProfileImg" src="../images/profile.jpg" alt="User Photo" class="photo">
+    <h2 id="name">Vinay C.R.</h2>
+    <p><strong>ID:</strong> <span id="Eid">EJ123456</span></p>
+    <p><strong>DOB:</strong> <span id="Edob">2005-08-17</span></p>
+    <p><strong>Gender:</strong> <span id="Egender">Male</span></p>
+    <p><strong>Mobile:</strong> <span id="Emobile">+1234567890</span></p>
+    <p><strong>Club:</strong> <span id="Eclub">Eejo Swim sdsdsdsdsssdClub</span></p>
+    <p><strong>School:</strong> <span id="Eschool">Springfieldasasasasasa sasasasasa High</span></p>
+    <canvas id="EejoQRCodeDisp" alt="QR Code" class="qr">
+    </canvas>
+    <button onclick="DownloadIDcard('EejoIDcardDisp',user.name +'_Eejo')">Download ID Card</button>
+  </div>
+  <footer>
+    <p>&copy; 2025 <a href="www.g.com">Tiny Techniques</a>  v 1.0.002</p>
+  </footer>
+ 
+  <div class="overlay" id="overlaypop">  
+    <div class="Msgpopup" id="ActivityPop">
+      <img id="Ejogo" class="EejoLogo" src="../images/eejo_max.png" alt="WWW.TinyTechniques.com">
+      <h4 id="BusyPopMsg"><b> </b></h1>
+    </div>
+  
+    <div class="Msgpopup" id="MessagePop">
+      <h1 style="column-fill: auto; color: white; background-color: rgb(22, 1, 211); text-align: justify;">Eejo portal
+      </h1>
+      <p id="popupMessage"></p>
+      <button onclick="hidePopup('overlaypop')">Close</button>
+    </div>
+  
+  </div>
+</body>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      document.getElementById('overlaypop2').classList.add('show');
+  let user = ReadSessionData('user');
+  if (user) {
+    UpdateProfilePage(user);
+    document.getElementById("swimmer_id").value = user.swimmer_id;
+    document.getElementById("name").value = user.name;
+    document.getElementById("dob").value = user.dob;
+    document.getElementById("email").value = user.email;
+    document.getElementById("schoolname").value = user.schoolname;
+    document.getElementById("clubname").value = user.clubname;
+    document.getElementById("gender").value = user.gender;
+    document.getElementById("role").value = user.role;
+    document.getElementById("phone").value = user.phone;
+
+    if (user.photoPath!== undefined)
+    {
+    document.getElementById("UploadedPhoto").src= user.photoPath;
+    }
+    if (user.id1Path!== undefined)
+
+    {
+      document.getElementById("UploadedID1").src= user.id1Path;
+
+    }
+    if (user.id2Path!== undefined)
+
+    {
+      document.getElementById("UploadedID2").src= user.id2Path;   
+
+    }
+    // loadSwimmerData();
+  }
+});
+
+  // ReadCurrentProfile();
+
+</script>
+
+</html>

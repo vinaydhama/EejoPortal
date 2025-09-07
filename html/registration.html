@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <title>User Registration Page</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/AdoptiveStyle.css">
+  <link rel="stylesheet" href="../css/FitForm.css">
+  <link rel="stylesheet" href="../css/GeneralStyle.css">
+
+
+  <script src="../js/script.js" defer></script>
+  <script src="../js/pop.js" defer></script>
+
+  <script type="module" src="../js/UserRegistration.js" defer></script>
+
+</head>
+
+<body>
+  <header>
+
+    <div class="logo">
+      <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
+      Eejo Swimming Portal
+    </div>
+  </header>
+  <nav>
+    <div class="sidebar" id="sidebar">
+      <button onclick="location.href='../index.html'">Login</button>
+  </nav>
+  <div class="container">
+    <!-- <div class="grid"> -->
+    <!--  -->
+    <h1>Registration Form</h1>
+    <form id="registrationForm">
+      <label>Name:
+        <input type="text" id="name" required>
+      </label>
+
+
+      <label>Date of Birth:
+        <input type="date" id="dob" required>
+      </label>
+
+
+      <label>Gender:
+        <select id="gender" required>
+          <option value="1">Male</option>
+          <option value="2">Female</option>
+          <option value="3">Other</option>
+        </select>
+      </label>
+
+
+      <label>Email:
+        <input type="email" id="email" required>
+      </label>
+
+
+      <label>Phone Number:
+        <input type="tel" id="phone" required>
+      </label>
+
+
+      <label>School Name:
+        <input type="tel" id="schoolname" required>
+      </label>
+
+
+      <label>Club Name:
+        <input type="tel" id="clubname" required>
+      </label>
+
+      <label>Password:
+        <input type="password" id="password" required>
+      </label>
+
+
+      <label>Re-enter Password:
+        <input type="password" id="confirmPassword" required>
+      </label>
+
+
+      <label>Role:
+        <select id="role" required>
+          <option value="" disabled selected>My Role</option>
+          <option value="1">Swimmer</option>
+          <option value="2">Parent</option>
+          <option value="3">Coach</option>
+        </select>
+
+      </label>
+
+
+      <label>Photo Upload:
+        <input type="file" id="photoFile" accept="image/*" required>
+        <progress id="photoProgress" value="0" max="100" style="width: 100%;"></progress>
+      </label>
+
+
+      <label>School ID:
+        <input type="file" id="id1File" accept="image/*" required>
+        <progress id="id1Progress" value="0" max="100" style="width: 100%;"></progress>
+      </label>
+
+
+      <label>Age Proof:
+        <input type="file" id="id2File" accept="image/*" required>
+        <progress id="id2Progress" value="0" max="100" style="width: 100%;"></progress>
+      </label>
+
+      <button type="submit" onclick="registerSwimmer(event)">Register</button>
+
+    </form>
+    <!-- </div> -->
+    <!-- </div> -->
+
+  </div>
+  <footer>
+    <p>&copy; 2025 <a href="www.g.com">Tiny Techniques</a> v 1.0.002</p>
+  </footer>
+
+  <div class="overlay" id="overlaypop" style="display: none;">
+    <div class="activity-popup" id="ActivityPop">
+      <div>
+        <img id="Ejogo" style="margin-top: 20%;" class="EejoLogo" src="../images/eejo_max.png"
+          alt="WWW.TinyTechniques.com">
+        <h4 id="BusyPopMsg"><b> </b></h1>
+      </div>
+    </div>
+    <div class="activity-msg" id="MessagePop">
+      <h1 style="column-fill: auto; color: white; background-color: rgb(22, 1, 211); text-align: justify;">Eejo portal
+      </h1>
+      <p id="popupMessage"></p>
+      <button onclick="onOk()">Close</button>
+    </div>
+  </div>
+
+</body>
+
+<script>
+  let user = ReadSessionData("user")
+  if (user) {
+    UpdateProfilePage(user);
+  }
+</script>
+
+</html>

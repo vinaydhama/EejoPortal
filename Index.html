@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Eejo Login Page</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/GeneralStyle.css">
+  <link rel="stylesheet" href="css/AdoptiveStyle.css">
+  <link rel="stylesheet" href="css/FitForm.css">
+  <!-- <link rel="stylesheet" href="css/Pop.css"> -->
+
+
+  <script src="js/script.js" defer></script>
+  <script src="js/pop.js" defer></script>
+  <script type="module" src="js/Login.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <div class="logo">Eejo Swimming Portal</div>
+    <div class="dark-mode-toggle">
+      <label type="checkbox" onclick="toggleDarkMode()"> 🌗
+    </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- <div class="grid">
+      <div class="card"> -->
+    <h1>Swimmer Login</h1>
+    <!-- <div class="Contentleft" style="width: 100PX;"> -->
+    <h3>Hello, Welcome to Eejo Swimmer portal, please login to continue </h3>
+    <!-- </div> -->
+    <form id="loginForm" onsubmit="loginUser(event)">
+      <label>Swimmer ID:
+        <input type="text" id="swimmerID" required>
+      </label>
+      <label>Password:
+        <input type="password" id="password" required>
+      </label>
+      <button type="submit">Login</button>
+      <button onclick="location.href='html/registration.html'">New User</button>
+      <button onclick="location.href='html/password_recovery.html'">Forgot Password</button>
+    </form>
+  </div>
+  <footer>
+    <p>&copy; 2025 <a href="www.g.com">Tiny Techniques</a>  v 1.0.002</p>
+  </footer>
+
+  <div class="overlay" id="overlaypop" style="display: none;">
+    <div class="activity-popup" id="ActivityPop">
+      <div>
+        <img id="Ejogo" style="margin-top: 20%;" class="EejoLogo" src="images/eejo_max.png"
+          alt="WWW.TinyTechniques.com">
+        <h4 id="BusyPopMsg"><b> </b></h1>
+      </div>
+    </div>
+    <div class="activity-msg" id="MessagePop">
+      <h1 style="column-fill: auto; color: white; background-color: rgb(22, 1, 211); text-align: justify;">Eejo portal
+      </h1>
+      <p id="popupMessage"></p>
+      <button onclick="onOk()">Close</button>
+    </div>
+  </div>
+<!-- 
+  <div class="popup" id="ActivityPop">
+    <img id="Ejogo" class="EejoLogo" src="images/eejo_max.png" alt="WWW.TinyTechniques.com">
+    <h1 class="smallfont" style=" margin-left: -50%;  margin-top: 50%; color: rgb(4, 49, 49); align-content: baseline;"
+      id="BusyPopMsg"><b> TimerState </b></h1>
+
+  </div>
+
+  <div id="MessagePop" class="popup" style="background-color:rgb(24, 108, 192);">    
+    <div class="popup-content" >
+      <h2 style="background-color: blue;">Eejo-Portal  </h2>
+      <p id="popupMessage">Your custom message goes here.</p>    
+      <button style="width: auto;  margin: 10%;"  onclick="onOk()">OK</button>
+      <button style="width: auto; margin: 10%" onclick="onCancel()">Cancel</button> -->
+    <!-- </div>
+  </div>  -->
+
+</body>
+<script>
+  showhideDiv(false,"overlaypop");
+
+  // let ActivityPop = document.getElementById("ActivityPop");
+</script>
+
+</html>  
