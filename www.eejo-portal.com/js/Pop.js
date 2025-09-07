@@ -18,7 +18,6 @@ function showPopup(message) {
 
   }
 
-
   function showMessagePop(Show,Message="")
   {
     showhideDiv(false,"ActivityPop");

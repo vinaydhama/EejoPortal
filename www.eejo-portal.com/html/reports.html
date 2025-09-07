@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="../css/FitForm.css">
   <link rel="stylesheet" href="../css/Slider.css">
   <link rel="stylesheet" href="../css/TimerStyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
 
 
 
@@ -44,8 +46,6 @@
           <a href="EditUser.html">Edit Profile</a>
           <a onclick="{ openPrintWindow('UserID',user,'EejoIDcardDisp','') }">Download ID</a>
           <a href="../index.html">Logout</a>
-          <a href="AddSwimmerRecord.html">Logsout</a>
-
         </div>
       </div>
     </div>
@@ -62,21 +62,17 @@
     </div>
   </nav>
 
-  <div class="container">
-    
-      <!-- <div class="grid"> -->
-      <!-- <div class="card"> -->
-      <!-- <div id="SwimmerPerformance" class="tabcontent"> -->
-
+  <div class="container">    
       <h3 style="align-items: center;">Swimmer Performance Report</h3>
       
       <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 600px;">
-        <button onclick="{toggleProfilePopup('AddRecodeddiv') }">Add</button>
-        <button onclick="{toggleProfilePopup('filters')}">Filter</button>
-        <button onclick="{toggleProfilePopup('chartContainer'); plotVisualiser()}">Analyze</button>
+        <button title="Add Record" class="add-btn" onclick="{toggleProfilePopup('AddRecodeddiv'); document.getElementById('AddRecodeddiv').scrollIntoView({ behavior: 'smooth' }); } "><i class="fas fa-add"></i> </button>
+        <button  title="Filter Record" class="filter-btn" onclick="{toggleProfilePopup('filters')}"><i class="fas fa-filter"></i> </button>
+        <button  title="Analyse " class="Analyse-btn" onclick=" { document.getElementById('chartVis').innerHTML=''; toggleProfilePopup('chartContainer'); plotVisualiser();  document.getElementById('chartContainer').scrollIntoView({ behavior: 'smooth' });}"><i class="fas fa-atom"></i> </button>
 
-        <button
-          onclick="{tableToJSON('performanceTable'); window.open(`PrintReport.html`, 'Print Report ', 'width=800,height=600'); }">Report</button>
+  <button class="print-btn" onclick="{tableToJSON('performanceTable'); window.open(`PrintReport.html`, 'Print Report ', 'width=800,height=600'); }"><i class='fas fa-print'></i></button>
+
+        <!-- <button  title="Print Report" class="print-btn" onclick="{tableToJSON('performanceTable'); window.open(`PrintReport.html`, 'Print Report ', 'width=800,height=600'); }"><i class="'fas fa-print"></i> </button> -->
 
       </div>
       <div id="filters" style="display: none;">
@@ -85,21 +81,17 @@
         <input type="text" id="filterEventId" placeholder="Filter by Event ID" onkeyup="filterTable()" />
         <input type="text" id="filterStroke" placeholder="Filter by Stroke" onkeyup="filterTable()" />
         <input type="text" id="filterDistance" placeholder="Filter by Distance" onkeyup="filterTable()" />
-        <!-- <button  id='ShowAddRecord' onclick="{document.getElementById('filters').style.display='block'}">Filter</button> -->
         <button id="ResetFilter" onclick="{document.getElementById('filters').style.display='none'}">Reset</button>
       </div>
     </div>
 
-      <!-- <div class="card"> -->
-      <!-- <div id="SwimmerPerformance" class="tabcontent"> -->
-        <div class="flex-row " style="display: block;">
+        <form class="flex-row " style="display: block;">
           <table id="performanceTable" class="table">
             <thead>
               <tr>
                 <th id="SlNoTh" onclick="sortTable(0)">Sl.No</th>
                 <th id="Rankth" onclick="sortTable(1)">Rank</th>
 
-                <!-- <th id="SwimmerIDth" onclick="sortTable(0)">Swimmer ID</th> -->
                 <th id="EventIDth" onclick="sortTable(2)">Event ID</th>
                 <th id="HeatDateTimeth" onclick="sortTable(3)">Heat DateTime</th>
 
@@ -111,12 +103,11 @@
                 <th id="ToImproveth" onclick="sortTable(8)">To Improve</th>
                 <th id="EditTH">Edit</th>
 
-                <!-- <th>Actions</th> -->
               </tr>
             </thead>
             <tbody></tbody>
           </table>
-        </div>
+        </form>
 
 
         <div  id="AddRecodeddiv" style="display: none;">
@@ -225,7 +216,7 @@
 
           <button id="AddRecordbtn">Add Record</button>
           <button id="CancelAddRecordbtn"
-            onclick="{document.getElementById('AddRecodeddiv').style.display='none'}">Cancel</button>
+            onclick="{document.getElementById('AddRecodeddiv').style.display='none'; document.getElementById('performanceTable').scrollIntoView({ behavior: 'smooth' });}  ">Cancel</button>
 
         </div>
         <div id="chartContainer">

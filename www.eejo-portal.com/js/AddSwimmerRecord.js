@@ -30,7 +30,8 @@ let SwID;
 
 
 
-function editRow(docId) {
+function editRow(docId,event) {
+    event.preventDefault();
     const row = document.querySelector(`tr[data-id="${docId}"]`);
     const cells = row.querySelectorAll("td");
 
@@ -88,9 +89,11 @@ function editRow(docId) {
         }
     }
 
+    //   <button onclick="saveRow('${docId}')">Save</button>
     cells[cells.length - 1].innerHTML = `
-  <button onclick="saveRow('${docId}')">Save</button>
-  <button onclick="cancelEdit('${docId}')">Cancel</button>`;
+    <button class="save-btn" onclick="saveRow('${doc.id}',event)"><i class="fas fa-save"></i> </button>
+    <button class="cancel-btn" onclick="cancelEdit('${doc.id}',event)"><i class="fas fa-cancel"></i> </button>  `;
+    // <button onclick="cancelEdit('${docId}')">Cancel</button>
 }
 
 function cancelEdit(docId) {
@@ -104,8 +107,8 @@ function cancelEdit(docId) {
 
     // Restore Edit/Delete buttons
     cells[cells.length - 1].innerHTML = `
-        <button class="edit-btn" onclick="editRow('${docId}')"><i class="fas fa-edit"></i> Edit</button>
-        <button class="delete-btn" onclick="deleteRow('${docId}')"><i class="fas fa-trash-alt"></i> Delete</button>
+        <button class="edit-btn" onclick="editRow('${docId}',event)"><i class="fas fa-edit"></i> </button>
+        <button class="delete-btn" onclick="deleteRow('${docId}',event)"><i class="fas fa-trash-alt"></i> </button>
     `;
 }
 
@@ -120,7 +123,9 @@ function showToast(message, type = "success") {
     }, 3000);
 }
 
-async function deleteRow(docId) {
+async function deleteRow(docId,event) {
+    event.preventDefault();
+
     if (!confirm("Are you sure you want to delete this record?")) return;
   
     try {
@@ -135,7 +140,8 @@ async function deleteRow(docId) {
   
 
 
-async function saveRow(docId) {
+async function saveRow(docId,event) {
+    event.preventDefault();
     const row = document.querySelector(`tr[data-id="${docId}"]`);
     const inputs = row.querySelectorAll("input");
     const select = row.querySelectorAll("select");
@@ -189,6 +195,7 @@ async function loadSwimmerPerformance() {
         );
         const tbody = document.querySelector("#performanceTable tbody");
         tbody.innerHTML = "";
+        
         const snapshot = await getDocs(q);
         let Slno=1;
         snapshot.forEach(doc => {
@@ -206,11 +213,9 @@ async function loadSwimmerPerformance() {
   <td>${data.time}</td>
   <td>${data.GoodThings}</td>
   <td>${data.ToImprove}</td>
-  <td>
-  <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 50px;">
-    <button class="edit-btn" onclick="editRow('${doc.id}')"><i class="fas fa-edit"></i> Ed</button>
-    <button class="delete-btn" onclick="deleteRow('${doc.id}')"><i class="fas fa-trash-alt"></i> De</button>
-  </div>
+  <td>  
+    <button class="edit-btn" onclick="editRow('${doc.id}',event)"><i class="fas fa-edit"></i> </button>
+    <button class="delete-btn" onclick="deleteRow('${doc.id}',event)"><i class="fas fa-trash-alt"></i> </button>  
   </td>
 </tr>`;
 
@@ -495,7 +500,7 @@ async function addNewEvent() {
         document.getElementById("addEventButton").classList.add("hidden");
     } catch (error) {
         console.error("Error adding event:", error);
-        alert("âŒ Failed to add event.");
+        alert("Failed to add event.");
     }
 }
 
