@@ -76,7 +76,7 @@ window.loginUser = async function(event) {
 
 
 //  alert("Login successful!");
-  window.location.href = "html/home.html"; // Redirect to homepage
+  window.location.href = "html/Home.html"; // Redirect to homepage
 };
 
 window.resetPassword = async function(event) {
