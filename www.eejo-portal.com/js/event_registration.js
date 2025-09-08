@@ -7,14 +7,12 @@ let MeetDate = "";
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("frmEvet");
   form.addEventListener("submit", AddEventEntries);
-  // showhideDiv(false,"ActivityPop");
-  // showhideDiv(false, "");
 });
 
 async function DisplayMeetRegister(event) {
   event.preventDefault();
 
-  MeetNameSelected =  document.getElementById('meetName').textContent;
+  MeetNameSelected = document.getElementById('meetName').textContent;
   var dataAPI = fetch(MeetDataFirebaseBaseURL + MeetNameSelected + ".json")
     .then(response => {
       return response.json()
@@ -22,7 +20,7 @@ async function DisplayMeetRegister(event) {
     .then(data => {
       ElegableGroup = CheckGroup(user.dob, data);
       ListApplicableEvents(ElegableGroup, data);
-    document.getElementById("frmEvet").scrollIntoView({ behavior: "smooth" });
+      document.getElementById("frmEvet").scrollIntoView({ behavior: "smooth" });
 
     }, error => {
       console.error('onRejected function called: ' + error.message);
@@ -30,10 +28,7 @@ async function DisplayMeetRegister(event) {
 }
 async function AddEventEntries(event) {
   console.log("Register function called");
-  showPopup("overlaypop")
-  showhideDiv(true, "ActivityPop", "Fetching Events");
-
-
+  ShowActivitypop("Fetching Events");
   event.preventDefault();
   const HeatSelector = document.getElementById('meetName');
   if (HeatSelector) {
@@ -47,16 +42,18 @@ async function AddEventEntries(event) {
           swEvents.push({ "Available": false, "BestTimeings": SwimmersBestTime.value, "EventName": SwimmersEventSelector.value });
         }
       }
-    }    
-    datatopost = { "club": user.ClubName, "Group": ElegableGroup, "ID": user.swimmer_id, "Events": swEvents,"MeetName":MeetName,"MeetAddress":MeetAddress,
-     "MeetDate":MeetDate};
+    }
+    datatopost = {
+      "club": user.ClubName, "Group": ElegableGroup, "ID": user.swimmer_id, "Events": swEvents, "MeetName": MeetName, "MeetAddress": MeetAddress,
+      "MeetDate": MeetDate
+    };
     let FirebaseURL = MeetDataFirebaseBaseURL + HeatSelector.textContent + "/SwimmerDetails/" + user.name + ".json"
     await SaveEventToFB(FirebaseURL, datatopost)
     document.getElementById("frmEvet").reset();
     document.getElementById("meetName").value = "";
     showhideDiv(false, "ActivityPop", "Fetching Events");
-    hidePopup("overlaypop")    
-    openPrintWindow("EventID",user, 'EventIDcardDisp',datatopost);
+    ClearAllPop();
+    openPrintWindow("EventID", user, 'EventIDcardDisp', datatopost);
   }
 }
 
@@ -66,16 +63,15 @@ function FillMeetnames(events) {
   const tbody = document.querySelector("#eventTable tbody");
   const today = new Date();
   Object.keys(events).forEach(event => {
-    MeetDate= new Date(events[event].MeetDate);
+    MeetDate = new Date(events[event].MeetDate);
     const eventDate = MeetDate;
-    MeetName= event;
-    MeetAddress =event.MeetAddress;
+    MeetName = event;
+    MeetAddress = event.MeetAddress;
     const daysLeft = Math.ceil((eventDate - today) / (1000 * 60 * 60 * 24));
     const row = document.createElement("tr");
-    if (daysLeft<0)
-      {
-    row.style.background="rgb(100,10,50)";
-      }
+    if (daysLeft < 0) {
+      row.style.background = "rgb(100,10,50)";
+    }
     row.id = event;
     row.innerHTML = `    
       <td>
@@ -85,36 +81,36 @@ function FillMeetnames(events) {
         </div>
       </td>
       <td>${event}</td>`;
-    
-row.addEventListener("click", function () {
-  const rowId = this.id; // e.g., "row-Meet1"  
-  const days = daysLeft;
-  showCard(events, days, rowId);
-});
+
+    row.addEventListener("click", function () {
+      const rowId = this.id; // e.g., "row-Meet1"  
+      const days = daysLeft;
+      showCard(events, days, rowId);
+    });
 
     tbody.appendChild(row);
   });
-  }
+}
 
-  function showCard(eventDetails, daysLeft,rowId) {    
-    document.getElementById("eventImage").src = "";
-    document.getElementById("meetName").textContent = eventDetails[rowId].MeetName;
-    document.getElementById("eventDate").textContent = new Date(eventDetails[rowId].MeetDate).toDateString();
-    document.getElementById("eventDays").textContent = `${daysLeft} days`;
-    document.getElementById("eventLocation").textContent = eventDetails[rowId].MeetAddress;
-    document.getElementById("eventType").textContent = eventDetails[rowId].NoOFEvents;
-    document.getElementById("eventDescription").textContent = "";
-  
-    if (daysLeft > 0) {
-      document.getElementById("registerBtn").style.display = "inline-block";
-    } else {
-      document.getElementById("registerBtn").style.display = "none";
-    }
+function showCard(eventDetails, daysLeft, rowId) {
+  document.getElementById("eventImage").src = "";
+  document.getElementById("meetName").textContent = eventDetails[rowId].MeetName;
+  document.getElementById("eventDate").textContent = new Date(eventDetails[rowId].MeetDate).toDateString();
+  document.getElementById("eventDays").textContent = `${daysLeft} days`;
+  document.getElementById("eventLocation").textContent = eventDetails[rowId].MeetAddress;
+  document.getElementById("eventType").textContent = eventDetails[rowId].NoOFEvents;
+  document.getElementById("eventDescription").textContent = "";
+
+  if (daysLeft > 0) {
+    document.getElementById("registerBtn").style.display = "inline-block";
+  } else {
+    document.getElementById("registerBtn").style.display = "none";
   }
+}
 
 function ListApplicableEvents(selectedGroup, meetData) {
-  showPopup("overlaypop")
-  showhideDiv(true, "ActivityPop", "Updating Events..");
+
+  ShowActivitypop("Updating Events..");
 
   const filteredEvents = meetData.EventList.filter(event => event.includes(`_${selectedGroup}_`));
   NoOFEvents = meetData.NoOFEvents;
@@ -131,9 +127,7 @@ function ListApplicableEvents(selectedGroup, meetData) {
   FormSubmit.type = "submit";
   FormSubmit.addEventListener("onsubmit", () => { AddEventEntries(); });
   frmSwSelectedEvents.appendChild(FormSubmit);
-  hidePopup("overlaypop")
-  showhideDiv(false, "ActivityPop", "");
-
+  ClearAllPop();
 }
 
 function CheckGroup(dobInput, meetData) {
@@ -151,8 +145,8 @@ function CheckGroup(dobInput, meetData) {
   return eligibleGroup;
 }
 async function FetchMeetNames() {
-  showPopup("overlaypop")
-  showhideDiv(true, "ActivityPop", "Updating MeetNames..");
+
+  ShowActivitypop("Updating MeetNames..");
   var dataAPI = fetch(MeetRegInfoFBURL)
     .then(response => {
       return response.json()
@@ -160,19 +154,14 @@ async function FetchMeetNames() {
     .then(data => {
       MeetRegData = data;
       FillMeetnames(MeetRegData);
-      hidePopup("overlaypop")
+      ClearAllPop();
 
       return MeetRegData;
 
     }, error => {
-      showPopup("overlaypop")
-
-            showhideDiv(false, "ActivityPop", "");
-
-      showhideDiv(true, "MessagePop", "Failed To Fetch MeetNames..");
+      ClearAllPop();
+      ShowMessagepop("Failed To Fetch MeetNames..");
       console.error('onRejected function called: ' + error.message);
-
-
     })
 }
 
@@ -185,7 +174,6 @@ async function SaveEventToFB(FirebaseURL, DataTopost) {
       "Content-type": "application/json; charset=UTF-8"
     }
   });
-  //showhide("BusyIndicatorpop");
 }
 
 function AddTimeValidators(TimeID) {
@@ -205,7 +193,7 @@ function AddTimeValidators(TimeID) {
 }
 function CreateEventSelector(Selectindex, AvailableEvents) {
   const frmSwSelectedEvents = document.getElementById("frmEvet");
-  frmSwSelectedEvents.style.display='block';
+  frmSwSelectedEvents.style.display = 'block';
   const select = document.createElement("select");
   select.id = "SwimmersEventSelector" + Selectindex;
   select.className = "event-dropdown";

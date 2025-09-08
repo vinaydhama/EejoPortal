@@ -41,7 +41,7 @@
         <img src="../images/profile.jpg" alt="Profile" id="UserPhoto" onclick="toggleProfilePopup()">
         <div class="profile-popup" id="profilePopup">
           <label id="lblUserName"> </label>
-           <a href="EditUser.html">Edit Profile</a>
+          <a href="EditUser.html">Edit Profile</a>
           <a onclick="{ openPrintWindow('UserID',user,'EejoIDcardDisp','') }">Download ID</a>
           <a href="../index.html">Logout</a>
         </div>
@@ -110,21 +110,21 @@
       </label>
 
       <label>Photo Upload:
-        <img id="UploadedPhoto"  style= "margin-left:45%" width=100PX  src="../images/profile.jpg">
+        <img id="UploadedPhoto" style="margin-left:45%" width=100PX src="../images/profile.jpg">
         <input type="file" id="photoFile" accept="image/*">
         <progress id="photoProgress" value="0" max="100" style="width: 100%;"></progress>
         <div id="photoPreview"></div>
       </label>
 
       <label>ID1 Upload:
-        <img id="UploadedID1"  style= "margin-left:50%" width=100PX  src="../images/profile.jpg">
+        <img id="UploadedID1" style="margin-left:50%" width=100PX src="../images/profile.jpg">
         <input type="file" id="id1File" accept="image/*">
         <progress id="id1Progress" value="0" max="100" style="width: 100%;"></progress>
         <div id="id1Preview"></div>
       </label>
 
       <label>ID2 Upload:
-        <img id="UploadedID2"  style= "margin-left:50%" width=100PX  src="../images/profile.jpg">
+        <img id="UploadedID2" style="margin-left:50%" width=100PX src="../images/profile.jpg">
         <input type="file" id="id2File" accept="image/*">
         <progress id="id2Progress" value="0" max="100" style="width: 100%;"></progress>
         <div id="id2Preview"></div>
@@ -148,66 +148,60 @@
     <button onclick="DownloadIDcard('EejoIDcardDisp',user.name +'_Eejo')">Download ID Card</button>
   </div>
   <footer>
-    <p>&copy; 2025 <a href="www.g.com">Tiny Techniques</a>  v 1.0.002</p>
+    <p>&copy; 2025 <a href="www.g.com">Tiny Techniques</a> v 1.0.002</p>
   </footer>
- 
-  <div class="overlay" id="overlaypop">  
+
+  <div class="overlay" id="overlaypop">
     <div class="Msgpopup" id="ActivityPop">
       <img id="Ejogo" class="EejoLogo" src="../images/eejo_max.png" alt="WWW.TinyTechniques.com">
       <h4 id="BusyPopMsg"><b> </b></h1>
     </div>
-  
+
     <div class="Msgpopup" id="MessagePop">
       <h1 style="column-fill: auto; color: white; background-color: rgb(22, 1, 211); text-align: justify;">Eejo portal
       </h1>
       <p id="popupMessage"></p>
       <button onclick="hidePopup('overlaypop')">Close</button>
     </div>
-  
+
   </div>
 </body>
 
 <script>
 
-    document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function () {
 
-      //document.getElementById('overlaypop2').classList.add('show');
-  let user = ReadSessionData('user');
-  if (user) {
-    UpdateProfilePage(user);
-    document.getElementById("swimmer_id").value = user.swimmer_id;
-    document.getElementById("name").value = user.name;
-    document.getElementById("dob").value = user.dob;
-    document.getElementById("email").value = user.email;
-    document.getElementById("schoolname").value = user.schoolname;
-    document.getElementById("clubname").value = user.clubname;
-    document.getElementById("gender").value = user.gender;
-    document.getElementById("role").value = user.role;
-    document.getElementById("phone").value = user.phone;
+    // document.getElementById('overlaypop2').classList.add('show');
+    let user = ReadSessionData('user');
+    if (user) {
+      UpdateProfilePage(user);
+      document.getElementById("swimmer_id").value = user.swimmer_id;
+      document.getElementById("name").value = user.name;
+      document.getElementById("dob").value = user.dob;
+      document.getElementById("email").value = user.email;
+      document.getElementById("schoolname").value = user.schoolname;
+      document.getElementById("clubname").value = user.clubname;
+      document.getElementById("gender").value = user.gender;
+      document.getElementById("role").value = user.role;
+      document.getElementById("phone").value = user.phone;
 
-    if (user.photoPath!== undefined)
-    {
-    document.getElementById("UploadedPhoto").src= user.photoPath;
+      if (user.photoPath !== undefined) {
+        document.getElementById("UploadedPhoto").src = user.photoPath;
+      }
+      if (user.id1Path !== undefined) {
+        document.getElementById("UploadedID1").src = user.id1Path;
+
+      }
+      if (user.id2Path !== undefined) {
+        document.getElementById("UploadedID2").src = user.id2Path;
+
+      }
+      // loadSwimmerData();
     }
-    if (user.id1Path!== undefined)
-
-    {
-      document.getElementById("UploadedID1").src= user.id1Path;
-
-    }
-    if (user.id2Path!== undefined)
-
-    {
-      document.getElementById("UploadedID2").src= user.id2Path;   
-
-    }
-    // loadSwimmerData();
-  }
-});
+  });
 
   // ReadCurrentProfile();
 
 </script>
-
 
 </html>

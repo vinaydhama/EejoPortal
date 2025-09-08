@@ -62,20 +62,27 @@
     </div>
   </nav>
 
-  <div class="container">    
-      <h3 style="align-items: center;">Swimmer Performance Report</h3>
-      
-      <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 600px;">
-        <button title="Add Record" class="add-btn" onclick="{toggleProfilePopup('AddRecodeddiv'); document.getElementById('AddRecodeddiv').scrollIntoView({ behavior: 'smooth' }); } "><i class="fas fa-add"></i> </button>
-        <button  title="Filter Record" class="filter-btn" onclick="{toggleProfilePopup('filters')}"><i class="fas fa-filter"></i> </button>
-        <button  title="Analyse " class="Analyse-btn" onclick=" { document.getElementById('chartVis').innerHTML=''; toggleProfilePopup('chartContainer'); plotVisualiser();  document.getElementById('chartContainer').scrollIntoView({ behavior: 'smooth' });}"><i class="fas fa-atom"></i> </button>
+  <div class="container">
+    <h3 style="align-items: center;">Swimmer Performance Report</h3>
 
-  <button class="print-btn" onclick="{tableToJSON('performanceTable'); window.open(`PrintReport.html`, 'Print Report ', 'width=800,height=600'); }"><i class='fas fa-print'></i></button>
+    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 600px;">
+      <button title="Add Record" class="add-btn"
+        onclick="{toggleProfilePopup('AddRecodeddiv'); document.getElementById('AddRecodeddiv').scrollIntoView({ behavior: 'smooth' }); } "><i
+          class="fas fa-add"></i> </button>
+      <button title="Filter Record" class="filter-btn" onclick="{toggleProfilePopup('filters')}"><i
+          class="fas fa-filter"></i> </button>
+      <button title="Analyse " class="Analyse-btn"
+        onclick=" { document.getElementById('chartVis').innerHTML=''; toggleProfilePopup('chartContainer'); plotVisualiser();  document.getElementById('chartContainer').scrollIntoView({ behavior: 'smooth' });}"><i
+          class="fas fa-atom"></i> </button>
 
-        <!-- <button  title="Print Report" class="print-btn" onclick="{tableToJSON('performanceTable'); window.open(`PrintReport.html`, 'Print Report ', 'width=800,height=600'); }"><i class="'fas fa-print"></i> </button> -->
+      <button class="print-btn"
+        onclick="{tableToJSON('performanceTable'); window.open(`PrintReport.html`, 'Print Report ', 'width=800,height=600'); }"><i
+          class='fas fa-print'></i></button>
 
-      </div>
-      <div id="filters" style="display: none;">
+      <!-- <button  title="Print Report" class="print-btn" onclick="{tableToJSON('performanceTable'); window.open(`PrintReport.html`, 'Print Report ', 'width=800,height=600'); }"><i class="'fas fa-print"></i> </button> -->
+
+    </div>
+    <div id="filters" style="display: none;">
       <div>
         <input type="text" id="filterSwimmerId" placeholder="Filter by Swimmer ID" onkeyup="filterTable()" />
         <input type="text" id="filterEventId" placeholder="Filter by Event ID" onkeyup="filterTable()" />
@@ -85,149 +92,149 @@
       </div>
     </div>
 
-        <form class="flex-row " style="display: block;">
-          <table id="performanceTable" class="table">
-            <thead>
-              <tr>
-                <th id="SlNoTh" onclick="sortTable(0)">Sl.No</th>
-                <th id="Rankth" onclick="sortTable(1)">Rank</th>
+    <form class="flex-row " style="display: block;">
+      <table id="performanceTable" class="table">
+        <thead>
+          <tr>
+            <th id="SlNoTh" onclick="sortTable(0)">Sl.No</th>
+            <th id="Rankth" onclick="sortTable(1)">Rank</th>
 
-                <th id="EventIDth" onclick="sortTable(2)">Event ID</th>
-                <th id="HeatDateTimeth" onclick="sortTable(3)">Heat DateTime</th>
+            <th id="EventIDth" onclick="sortTable(2)">Event ID</th>
+            <th id="HeatDateTimeth" onclick="sortTable(3)">Heat DateTime</th>
 
-                <th id="Stroketh" onclick="sortTable(4)">Stroke</th>
-                <th id="Distanceth" onclick="sortTable(5)">Distance</th>
-                <th id="Timeth" onclick="sortTable(6)">Time</th>
+            <th id="Stroketh" onclick="sortTable(4)">Stroke</th>
+            <th id="Distanceth" onclick="sortTable(5)">Distance</th>
+            <th id="Timeth" onclick="sortTable(6)">Time</th>
 
-                <th id="GoodThingsth" onclick="sortTable(7)">Good Things</th>
-                <th id="ToImproveth" onclick="sortTable(8)">To Improve</th>
-                <th id="EditTH">Edit</th>
+            <th id="GoodThingsth" onclick="sortTable(7)">Good Things</th>
+            <th id="ToImproveth" onclick="sortTable(8)">To Improve</th>
+            <th id="EditTH">Edit</th>
 
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </form>
-
-
-        <div  id="AddRecodeddiv" style="display: none;">
-          <div class="flex-col">
-            <label for="eventType">Event Type</label>
-            <select id="eventType">
-              <option value="Training">Training</option>
-              <option value="Club">Club Level</option>
-              <option value="Interschool">Interschool</option>
-              <option value="State">State</option>
-              <option value="National">National</option>
-            </select>
-          </div>
-
-          <!-- Event Details (shown if not Training) -->
-          <div id="eventDetails" class="hidden">
-            <div class="flex-col">
-              <label for="eventNameDropdown">Event Name</label>
-              <select id="eventNameDropdown">
-                <option value="">-- Select Existing Event --</option>
-              </select>
-            </div>
-
-            <div class="flex-col">
-              <label for="newEventName">New Event Name (if not found)</label>
-              <input type="text" id="newEventName" placeholder="Enter new event name">
-            </div>
-
-            <div class="flex-col">
-              <label for="eventDate">Event Date</label>
-              <input type="date" id="eventDate">
-            </div>
-
-            <div class="flex-col">
-              <label for="eventAddress">Event Address</label>
-              <textarea id="eventAddress" rows="3"></textarea>
-            </div>
-
-            <div class="flex-col">
-              <label for="eventLocation">Event GPS Location</label>
-              <input type="text" id="eventLocation" placeholder="Latitude, Longitude">
-            </div>
-
-            <div class="flex-col">
-              <button id="addEventButton" class="hidden">Add New Event</button>
-            </div>
-          </div>
-
-          <!-- Swimmer Info -->
-          <div class="flex-row">
-            <div class="flex-col">
-              <label for="swimmerId">Swimmer ID</label>
-              <input type="text" id="swimmerId" value="SESSION_SWIMMER_ID" readonly>
-            </div>
-            <div class="flex-col">
-              <label for="swimmerName">Swimmer Name</label>
-              <input type="text" id="swimmerName" value="SESSION_SWIMMER_NAME" readonly>
-            </div>
-          </div>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </form>
 
 
-          <!-- Performance Entry -->
-          <div class="flex-row">
-            <div class="flex-col">
-              <label for="strokeType">Stroke Type</label>
-              <select id="strokeType">
-                <option value="Freestyle">Freestyle</option>
-                <option value="Breaststroke">Breaststroke</option>
-                <option value="Butterfly">Butterfly</option>
-                <option value="Backstroke">Backstroke</option>
-              </select>
+    <div id="AddRecodeddiv" style="display: none;">
+      <div class="flex-col">
+        <label for="eventType">Event Type</label>
+        <select id="eventType">
+          <option value="Training">Training</option>
+          <option value="Club">Club Level</option>
+          <option value="Interschool">Interschool</option>
+          <option value="State">State</option>
+          <option value="National">National</option>
+        </select>
+      </div>
 
-
-            </div>
-
-            <div class="flex-col">
-              <label for="distance">Distance</label>
-              <select id="distance">
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-                <option value="200">200</option>
-                <option value="400">400</option>
-                <option value="800">800</option>
-                <option value="Other">Other</option>
-              </select>
-              <input type="text" id="customDistance" class="hidden" placeholder="Enter custom distance">
-            </div>
-          </div>
-
-          <div class="flex-col">
-            <label for="HeatDateTime">Heat DateTime</label>
-            <input type="datetime-local" id="HeatDateTime" placeholder="e.g., 01:23.456">
-
-            <button id="openTimer" data-target="#recordTime">Open Timer</button>
-            <span class="hint">Shortcut inside dialog: <b>S</b>tart, S<b>t</b>op, <b>R</b>eset, <b>Enter</b> =
-              Record</span>
-
-            <label for="recordTime">Timings</label>
-            <input type="text" id="recordTime" placeholder="e.g., 01:23.456">
-
-
-            <label for="rankentry">Rank</label>
-            <input type="text" id="rankentry" placeholder="01">
-          </div>
-
-          <button id="AddRecordbtn">Add Record</button>
-          <button id="CancelAddRecordbtn"
-            onclick="{document.getElementById('AddRecodeddiv').style.display='none'; document.getElementById('performanceTable').scrollIntoView({ behavior: 'smooth' });}  ">Cancel</button>
-
+      <!-- Event Details (shown if not Training) -->
+      <div id="eventDetails" class="hidden">
+        <div class="flex-col">
+          <label for="eventNameDropdown">Event Name</label>
+          <select id="eventNameDropdown">
+            <option value="">-- Select Existing Event --</option>
+          </select>
         </div>
-        <div id="chartContainer">
-          <canvas id="chartCanvas">
-            <h2>Visualizations</h2>
 
-          </canvas>
+        <div class="flex-col">
+          <label for="newEventName">New Event Name (if not found)</label>
+          <input type="text" id="newEventName" placeholder="Enter new event name">
+        </div>
+
+        <div class="flex-col">
+          <label for="eventDate">Event Date</label>
+          <input type="date" id="eventDate">
+        </div>
+
+        <div class="flex-col">
+          <label for="eventAddress">Event Address</label>
+          <textarea id="eventAddress" rows="3"></textarea>
+        </div>
+
+        <div class="flex-col">
+          <label for="eventLocation">Event GPS Location</label>
+          <input type="text" id="eventLocation" placeholder="Latitude, Longitude">
+        </div>
+
+        <div class="flex-col">
+          <button id="addEventButton" class="hidden">Add New Event</button>
         </div>
       </div>
 
-  
+      <!-- Swimmer Info -->
+      <div class="flex-row">
+        <div class="flex-col">
+          <label for="swimmerId">Swimmer ID</label>
+          <input type="text" id="swimmerId" value="SESSION_SWIMMER_ID" readonly>
+        </div>
+        <div class="flex-col">
+          <label for="swimmerName">Swimmer Name</label>
+          <input type="text" id="swimmerName" value="SESSION_SWIMMER_NAME" readonly>
+        </div>
+      </div>
+
+
+      <!-- Performance Entry -->
+      <div class="flex-row">
+        <div class="flex-col">
+          <label for="strokeType">Stroke Type</label>
+          <select id="strokeType">
+            <option value="Freestyle">Freestyle</option>
+            <option value="Breaststroke">Breaststroke</option>
+            <option value="Butterfly">Butterfly</option>
+            <option value="Backstroke">Backstroke</option>
+          </select>
+
+
+        </div>
+
+        <div class="flex-col">
+          <label for="distance">Distance</label>
+          <select id="distance">
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="200">200</option>
+            <option value="400">400</option>
+            <option value="800">800</option>
+            <option value="Other">Other</option>
+          </select>
+          <input type="text" id="customDistance" class="hidden" placeholder="Enter custom distance">
+        </div>
+      </div>
+
+      <div class="flex-col">
+        <label for="HeatDateTime">Heat DateTime</label>
+        <input type="datetime-local" id="HeatDateTime" placeholder="e.g., 01:23.456">
+
+        <button id="openTimer" data-target="#recordTime">Open Timer</button>
+        <span class="hint">Shortcut inside dialog: <b>S</b>tart, S<b>t</b>op, <b>R</b>eset, <b>Enter</b> =
+          Record</span>
+
+        <label for="recordTime">Timings</label>
+        <input type="text" id="recordTime" placeholder="e.g., 01:23.456">
+
+
+        <label for="rankentry">Rank</label>
+        <input type="text" id="rankentry" placeholder="01">
+      </div>
+
+      <button id="AddRecordbtn">Add Record</button>
+      <button id="CancelAddRecordbtn"
+        onclick="{document.getElementById('AddRecodeddiv').style.display='none'; document.getElementById('performanceTable').scrollIntoView({ behavior: 'smooth' });}  ">Cancel</button>
+
+    </div>
+    <div id="chartContainer">
+      <canvas id="chartCanvas">
+        <h2>Visualizations</h2>
+
+      </canvas>
+    </div>
+  </div>
+
+
 
 
   <div id="AddRecodeddiv" style="display: none;">
@@ -340,11 +347,11 @@
     <input type="text" id="filterDistance" placeholder="Filter by Distance" onkeyup="filterTable()" />
     <!-- <button  id='ShowAddRecord' onclick="{document.getElementById('filters').style.display='block'}">Filter</button> -->
     <button id="ResetFilter" onclick="{document.getElementById('filters').style.display='none'}">Reset</button>
-  
+
   </div>
-  
-  <div id="chartVis"></div> 
-</div>
+
+  <div id="chartVis"></div>
+  </div>
 
   <footer>
     <p>&copy; 2025 <a href="www.g.com">Tiny Techniques</a> v 1.0.001</p>
@@ -514,10 +521,10 @@
   updateDisplay();
 </script>
 <script>
-     let user = ReadSessionData("user")
-  if (user)
-  {
+  let user = ReadSessionData("user")
+  if (user) {
     UpdateProfilePage(user);
   }
 </script>
+
 </html>

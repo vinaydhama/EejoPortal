@@ -130,16 +130,15 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       toggleSidebar();
     }
-  hidePopup('overlaypop');
-  showhideDiv(false,"MessagePop");
-  showhideDiv(false,"ActivityPop");
+  ClearAllPop();
+  // ShowActivitypop("Fetching Events");
+  // showhideDiv(false,"MessagePop");
+  // showhideDiv(false,"ActivityPop");
 });
 
 
 window.registerSwimmer =async function (event) {
-
-  showPopup('overlaypop');
-  showhideDiv(true,"ActivityPop","Verifying Credentials");
+  ShowActivitypop("Verifying Credentials");
   console.log("Register function called");
   event.preventDefault();
 
@@ -159,16 +158,16 @@ window.registerSwimmer =async function (event) {
   const confirmPassword = document.getElementById("confirmPassword").value;
 
   if (password !== confirmPassword) {
-    showPopup('overlaypop');
-    showMessagePop(true, "Passwords do not match with Confirm Password, Re-enter the password." )
+    
+    ShowMessagepop("Passwords do not match with Confirm Password, Re-enter the password." )
     
     // alert("Passwords do not match.");
     return;
   }
 
   if (!photoFile || !id1File || !id2File) {
-    showPopup('overlaypop');
-    showMessagePop(true, "Please upload all required files." );
+    
+    ShowMessagepop("Please upload all required files." );
     // alert("Please upload all required files.");
     return;
   }
@@ -176,15 +175,15 @@ window.registerSwimmer =async function (event) {
   const duplicateName = await isDuplicateName(name);
   if (duplicateName) {
     
-    showPopup('overlaypop');
-    showMessagePop(true, "User Name "+ name + "Already exists please try with other Name you (may can swap initial and name)" );
+    
+    ShowMessagepop("User Name '"+ name + "' Already exists please try with other Name  (you may can swap initial and name)" );
     return;
   }
 
   const duplicate = await isDuplicateSwimmer(name, dob, gender);
   if (duplicate) {
-    showPopup('overlaypop');
-    showMessagePop(true, "User Name "+ name + " DOB "+ dob + " Gender "+ gender +     "Already exists Try to recover password if you dont remember" );
+    
+    ShowMessagepop("User Name '"+ name + "' DOB '"+ dob + "' Gender '"+ gender +     "' Already exists Try to recover password if you dont remember" );
     // alert("Duplicate registration detected.");
     return;
   }
@@ -192,8 +191,8 @@ window.registerSwimmer =async function (event) {
   const encodedPassword = await encodePassword(password);
 
   try {
-    showPopup('overlaypop');
-    showhideDiv(true,"ActivityPop","Uploading Documents...");
+    
+    ShowActivitypop("Uploading Documents...");
     const photoPath = await uploadFile(photoFile, `photos/${swimmer_id}`, "photoProgress");
     const id1Path = await uploadFile(id1File, `ids/${swimmer_id}/id1`, "id1Progress");
     const id2Path = await uploadFile(id2File, `ids/${swimmer_id}/id2`, "id2Progress");
@@ -217,18 +216,18 @@ window.registerSwimmer =async function (event) {
       id1Path,
       id2Path
     };
-    showPopup('overlaypop');
-    showhideDiv(true,"ActivityPop","Completing registration");
+    
+    ShowActivitypop("Completing registration");
 
     await addDoc(collection(db, "swimmers"), swimmer);
-    showPopup('overlaypop');
-    showMessagePop(true, " CONGRAJULATIONS!!! Swimmer registered successfully! use ID: "+swimmer_id + " For Login");
+    
+    ShowMessagepop(" CONGRAJULATIONS!!! Swimmer registered successfully! use ID: "+swimmer_id + " For Login");
     // alert("Swimmer registered successfully! use ID: "+swimmer_id + " For Login" );
     document.getElementById("registrationForm").reset();
   } catch (e) {
     console.error("Error registering swimmer:", e);
-    showPopup('overlaypop');
-    showMessagePop(true, " Registration failed. Try after sometime or contact Help desk");
+    
+    ShowMessagepop(" Registration failed. Try after sometime or contact Help desk");
 
     // alert("Registration failed.");
   }
@@ -237,8 +236,8 @@ window.registerSwimmer =async function (event) {
 window.EditSwimmer= async function (event) {
   let userinfo = ReadSessionData('user');
 
-  showPopup('overlaypop');
-  showhideDiv(true,"ActivityPop","Verifying Credentials");
+  
+  ShowActivitypop("Verifying Credentials");
   console.log("Register function called");
   event.preventDefault();
 
@@ -269,8 +268,8 @@ window.EditSwimmer= async function (event) {
     {
 
   if (password !== confirmPassword) {
-    showPopup('overlaypop');
-    showMessagePop(true, "Passwords do not match with Confirm Password, Re-enter the password." )
+    
+    ShowMessagepop("Passwords do not match with Confirm Password, Re-enter the password." )
     
     // alert("Passwords do not match.");
     return;
@@ -282,31 +281,31 @@ window.EditSwimmer= async function (event) {
 }
 
   // if (!photoFile || !id1File || !id2File) {
-  //   showPopup('overlaypop');
-  //   showMessagePop(true, "Please upload all required files." );
+  //   
+  //   ShowMessagepop("Please upload all required files." );
   //   // alert("Please upload all required files.");
   //   return;
   // }
   // To be done ENSURE NO DUPLICATE NAMES OTHERTHAN SAME DOC ITSELF
   // const duplicateName = await isDuplicateName(name);
   // if (duplicateName) {    
-  //   showPopup('overlaypop');
-  //   showMessagePop(true, "User Name "+ name + "Already exists please try with other Name you (may can swap initial and name)" );
+  //   
+  //   ShowMessagepop("User Name "+ name + "Already exists please try with other Name you (may can swap initial and name)" );
   //   return;
   // }
 
   const duplicate = await isDuplicateSwimmer(name, dob, gender);
   if (duplicate) {
-    showPopup('overlaypop');
-    showMessagePop(true, "User Name "+ name + " DOB "+ dob + " Gender "+ gender +     "Already exists Try to recover password if you dont remember" );
+    
+    ShowMessagepop("User Name "+ name + " DOB "+ dob + " Gender "+ gender +     "Already exists Try to recover password if you dont remember" );
     // alert("Duplicate registration detected.");
     return;
   }
   const swimmer_id = userinfo.swimmer_id;
   
   try {
-    showPopup('overlaypop');
-    showhideDiv(true,"ActivityPop","Uploading Documents...");
+    
+    ShowActivitypop("Uploading Documents...");
 
 
     let photoFile="";
@@ -411,8 +410,8 @@ window.EditSwimmer= async function (event) {
       id2Path
     };
     
-    showPopup('overlaypop');
-    showhideDiv(true,"ActivityPop","Completing update");
+    
+    ShowActivitypop("Completing update");
 
     // const encodedNewPassword = await encodePassword(newPassword);
 
@@ -423,8 +422,8 @@ window.EditSwimmer= async function (event) {
     const snapshot = await getDocs(q);
   
     // if (snapshot.empty) {
-    //   showPopup('overlaypop');
-    //   showMessagePop(true, "Details Entered is not matching, try with valid Details." );
+    //   
+    //   ShowMessagepop("Details Entered is not matching, try with valid Details." );
     //   // alert("No matching swimmer found.");
     //   return;
     // }
@@ -446,17 +445,17 @@ window.EditSwimmer= async function (event) {
     'id2Path':id2Path });
 
     
-    showPopup('overlaypop');  
-    showMessagePop(true, "Hello "  + userdata.name +  ", Profile Update successful.");
+      
+    ShowMessagepop("Hello "  + userdata.name +  ", Profile Update successful.");
     // await addDoc(collection(db, "swimmers"), swimmer);
-    // showPopup('overlaypop');
-    // showMessagePop(true, " CONGRAJULATIONS!!! Swimmer registered successfully! use ID: "+swimmer_id + " For Login");
+    // 
+    // ShowMessagepop(" CONGRAJULATIONS!!! Swimmer registered successfully! use ID: "+swimmer_id + " For Login");
     // // alert("Swimmer registered successfully! use ID: "+swimmer_id + " For Login" );
     // document.getElementById("updateForm").reset();
   } catch (e) {
     console.error("Error registering swimmer:", e);
-    showPopup('overlaypop');
-    showMessagePop(true, " Registration failed. Try after sometime or contact Help desk");
+    
+    ShowMessagepop(" Registration failed. Try after sometime or contact Help desk");
 
     // alert("Registration failed.");
   }

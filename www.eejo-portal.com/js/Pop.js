@@ -43,22 +43,31 @@ function showPopup(message) {
   }
 
 
-function showPopup(overlaypop) {
-  document.getElementById(overlaypop).classList.add('show');
-}
+// function showPopup(overlaypop) {
+//   document.getElementById(overlaypop).classList.add('show');
+// }
 
-function hidePopup(overlaypop) {
-  document.getElementById(overlaypop).classList.remove('show');
-  showhideDiv(false, overlaypop, "");
-}
+// function hidePopup(overlaypop) {
+//   document.getElementById(overlaypop).classList.remove('show');
+//   showhideDiv(false, overlaypop, "");
+// }
 
 function showhideDiv(state, id, BusyMsg = "") {
   try {
     if (BusyMsg != "") {
       var BusyMsgobj = document.getElementById("BusyPopMsg");
-      BusyMsgobj.innerHTML = BusyMsg
-    }
+      if (BusyMsgobj)
+        {
+      BusyMsgobj.innerText = BusyMsg;
+        }
 
+        var popupMessage = document.getElementById("popupMessage");
+      if (popupMessage)
+        {
+          popupMessage.innerText = BusyMsg;
+        }
+    }
+    
     var e = document.getElementById(id);
     if (e) {
       if (state == true) {
@@ -71,5 +80,50 @@ function showhideDiv(state, id, BusyMsg = "") {
     // e.style.display = (e.style.display == 'block') ? 'none' : 'block';
   } catch (error) {
 
+  }
+}
+
+function ShowMessagepop(MessageToDisp, MsgpopName="MessagePop",OverlaypopName="overlaypop")
+{
+  ClearAllPop();
+  showPopup(OverlaypopName)
+  // showhideDiv(true,OverlaypopName);
+  showhideDiv(true,MsgpopName, MessageToDisp);
+}
+
+function ShowActivitypop(MessageToDisp, ActivitypopName="ActivityPop",OverlaypopName="overlaypop")
+{
+  ClearAllPop();
+  showPopup(OverlaypopName)
+
+  // showhideDiv(true,OverlaypopName);
+  showhideDiv(true,ActivitypopName,MessageToDisp);
+}
+
+function ClearAllPop(OverlaypopName="overlaypop",ActivitypopName="ActivityPop",MsgpopName="MessagePop")
+{
+  hidePopup(OverlaypopName)
+  // showhideDiv(false,OverlaypopName);
+  showhideDiv(false,ActivitypopName);
+  showhideDiv(false,MsgpopName);
+}
+
+
+function showPopup(popName) {
+  const popobj= document.getElementById(popName);
+  if (popobj)
+  {
+    popobj.classList.add('show')
+  }
+
+}
+
+function hidePopup(popName) {
+  // document.getElementById('popupOverlay').classList.remove('show');
+
+  const popobj= document.getElementById(popName);
+  if (popobj)
+  {
+    popobj.classList.remove('show')
   }
 }
