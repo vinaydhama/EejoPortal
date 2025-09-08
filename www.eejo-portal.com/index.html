@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="css/GeneralStyle.css">
   <link rel="stylesheet" href="css/AdoptiveStyle.css">
   <link rel="stylesheet" href="css/FitForm.css">
+  <link rel="stylesheet" href="css/Slider.css">
+  <link rel="stylesheet" href="css/Pop.css">
+
+
   <!-- <link rel="stylesheet" href="css/Pop.css"> -->
 
 
@@ -50,37 +54,19 @@
     <p>&copy; 2025 <a href="www.g.com">Tiny Techniques</a>  v 1.0.002</p>
   </footer>
 
-  <div class="overlay" id="overlaypop" style="display: none;">
-    <div class="activity-popup" id="ActivityPop">
-      <div>
-        <img id="Ejogo" style="margin-top: 20%;" class="EejoLogo" src="images/eejo_max.png"
-          alt="WWW.TinyTechniques.com">
-        <h4 id="BusyPopMsg"><b> </b></h1>
-      </div>
+  <div class="overlay" id="overlaypop" >
+    <div class="Msgpopup" id="ActivityPop">
+      <img id="Ejogo" style="margin: 20%;" class="EejoLogo" src="../images/eejo_max.png"
+        alt="WWW.TinyTechniques.com">
+      <h4 id="BusyPopMsg"><b> </b></h1>
     </div>
-    <div class="activity-msg" id="MessagePop">
-      <h1 style="column-fill: auto; color: white; background-color: rgb(22, 1, 211); text-align: justify;">Eejo portal
-      </h1>
-      <p id="popupMessage"></p>
-      <button onclick="onOk()">Close</button>
+
+    <div class="Msgpopup" id="MessagePop">
+      <h1 style="column-fill: auto; color: white; background-color: rgb(22, 1, 211); text-align: justify;">Eejo portal </h1>
+      <p class="SlideP" id="popupMessage"></p>
+      <button class="Cancelbtn" onclick="ClearAllPop()">Close</button>
     </div>
   </div>
-<!-- 
-  <div class="popup" id="ActivityPop">
-    <img id="Ejogo" class="EejoLogo" src="images/eejo_max.png" alt="WWW.TinyTechniques.com">
-    <h1 class="smallfont" style=" margin-left: -50%;  margin-top: 50%; color: rgb(4, 49, 49); align-content: baseline;"
-      id="BusyPopMsg"><b> TimerState </b></h1>
-
-  </div>
-
-  <div id="MessagePop" class="popup" style="background-color:rgb(24, 108, 192);">    
-    <div class="popup-content" >
-      <h2 style="background-color: blue;">Eejo-Portal  </h2>
-      <p id="popupMessage">Your custom message goes here.</p>    
-      <button style="width: auto;  margin: 10%;"  onclick="onOk()">OK</button>
-      <button style="width: auto; margin: 10%" onclick="onCancel()">Cancel</button> -->
-    <!-- </div>
-  </div>  -->
 
 </body>
 <script>

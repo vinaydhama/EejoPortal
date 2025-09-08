@@ -375,10 +375,23 @@
     <div class="kbd-hints">Press <kbd>S</kbd>, <kbd>T</kbd>, <kbd>R</kbd>, or <kbd>Enter</kbd>. <em>Esc</em> closes the
       dialog.</div>
   </dialog>
+  
+  <div class="overlay" id="overlaypop" >
+    <div class="Msgpopup" id="ActivityPop">
+      <img id="Ejogo" style="margin: 20%;" class="EejoLogo" src="../images/eejo_max.png"
+        alt="WWW.TinyTechniques.com">
+      <h4 id="BusyPopMsg"><b> </b></h1>
+    </div>
+
+    <div class="Msgpopup" id="MessagePop">
+      <h1 style="column-fill: auto; color: white; background-color: rgb(22, 1, 211); text-align: justify;">Eejo portal </h1>
+      <p class="SlideP" id="popupMessage"></p>
+      <button class="Cancelbtn" onclick="ClearAllPop()">Close</button>
+    </div>
+  </div>
 
 </body>
 <script>
-
 
   function tableToJSON(tablename) {
     tableperformance = document.getElementById(tablename);

@@ -5,16 +5,16 @@
 
 <script src="../js/Pop.js"></script>
 <script src="../js/event_registration.js"></script>
-<!-- <script src="../js/IDHelper.js"></script> -->
 
 
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/Pop.css">
 <link rel="stylesheet" href="../css/GeneralStyle.css">
-<!-- <link rel="stylesheet" href="../css/Idcard.css"> -->
 <link rel="stylesheet" href="../css/AdoptiveStyle.css">
 <link rel="stylesheet" href="../css/FitForm.css">
 <link rel="stylesheet" href="../css/EventTabDisp.css">
+<link rel="stylesheet" href="../css/Slider.css">
+
 
 <head>
   <meta charset="UTF-8">
@@ -86,48 +86,39 @@
 
     </form>
     <p id="eligibilityResult"></p>
-    <!-- </div> -->
-    <!-- </div> -->
-
+   
     <form id="frmEvet" style="display:none">
       <button type="submit">Register</button>
     </form>
 
-    <!-- <div>
-    <button onclick="DownloadIDcard('EejoIDcardDisp',user.name +'_Eejo')">Download Eejo ID</button>
-    <button onclick="DownloadIDcard('EventIDcardDisp',user.name +'_Event')">Download Event ID</button>
-  </div> -->
-
-    <div class="overlay" id="overlaypop" >
-      <div class="activity-popup" id="ActivityPop">        
-          <img id="Ejogo" style="margin-top: 20%;" class="EejoLogo" src="../images/eejo_max.png"
-            alt="WWW.TinyTechniques.com">
-          <h4 id="BusyPopMsg"><b> </b></h1>        
-      </div>
-      <div class="activity-msg" id="MessagePop" style="display: none;" >
-        <h1 style="column-fill: auto; color: white; background-color: rgb(22, 1, 211); text-align: justify;">Eejo portal
-        </h1>
-        <p id="popupMessage"></p>
-        <button onclick="hidePopup('overlaypop')">Close</button>
-      </div>
-    </div>
-  </div>
+    
 
   <footer>
     <p>&copy; 2025 <a href="www.g.com">Tiny Techniques</a> v 1.0.002</p>
   </footer>
+
+  
+  <div class="overlay" id="overlaypop" >
+    <div class="Msgpopup" id="ActivityPop">
+      <img id="Ejogo" style="margin: 20%;" class="EejoLogo" src="../images/eejo_max.png"
+        alt="WWW.TinyTechniques.com">
+      <h4 id="BusyPopMsg"><b> </b></h1>
+    </div>
+
+    <div class="Msgpopup" id="MessagePop">
+      <h1 style="column-fill: auto; color: white; background-color: rgb(22, 1, 211); text-align: justify;">Eejo portal </h1>
+      <p class="SlideP" id="popupMessage"></p>
+      <button class="Cancelbtn" onclick="ClearAllPop()">Close</button>
+    </div>
+  </div>
+
 </body>
 
 <script>
   toggleSidebar();
    hidePopup("overlaypop");
   MeetRegData = FetchMeetNames();
-  // const selectElement = document.getElementById('meetSelect');
   const displayParagraph = document.getElementById('selectedValueDisplay');
-  // selectElement.addEventListener('change', function () {
-  //   const selectedValue = this.value;
-  //   DisplayMeetRegister(selectedValue, MeetRegData);
-  // });
   let user = ReadSessionData("user")
   if (user) {
     UpdateProfilePage(user);

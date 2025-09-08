@@ -26,10 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       toggleSidebar();
     }
-  // document.getElementById('MessagePop').show();
-  showhideDiv(false,"overlaypop");
-  showhideDiv(false,"MessagePop");
-  showhideDiv(false,"ActivityPop");
+  ClearAllPop();
 });
 
 async function encodePassword(password) {
@@ -41,8 +38,8 @@ async function encodePassword(password) {
 
 window.loginUser = async function(event) {
   event.preventDefault();
-  showhideDiv(true,"overlaypop");
-  showhideDiv(true,"ActivityPop","Verifying Credentials");
+  
+  ShowActivitypop("ActivityPop","Verifying Credentials");
 
   const swimmerID = document.getElementById("swimmerID").value;
   const password = document.getElementById("password").value;
@@ -52,9 +49,7 @@ window.loginUser = async function(event) {
   const snapshot = await getDocs(q);
 
   if (snapshot.empty) {
-  showhideDiv(true,"overlaypop");
-    showMessagePop(true, "ID you entered is not found, try with valid ID." );
-    // alert("Swimmer ID not found.");
+    ShowMessagepop( "ID you entered is not found, try with valid ID." );
     return;
   }
 
@@ -62,29 +57,19 @@ window.loginUser = async function(event) {
   const userData = userDoc.data();
 
   if (userData.password !== encodedPassword) {
-  showhideDiv(true,"overlaypop");
-    showMessagePop(true, "Password entered is incorrect, Enter correct password." );
-
-//    alert("Incorrect password.");
+    ShowMessagepop( "Password entered is incorrect, Enter correct password." );
     return;
   }
 
   // Store session data
   sessionStorage.setItem("swimmerData", JSON.stringify(userData));
-
-  // showMessagePop(true, "you have loged in successfully. You can now start using portal by log in." );
-
-
 //  alert("Login successful!");
   window.location.href = "html/Home.html"; // Redirect to homepage
 };
 
 window.resetPassword = async function(event) {
   event.preventDefault();
-  showhideDiv(true,"overlaypop");
-  showhideDiv(true,"ActivityPop","Verifying Details");
-
-
+  ShowActivitypop("ActivityPop","Verifying Details");
   const name = document.getElementById("resetName").value;
   const dob = document.getElementById("resetDOB").value;
   const phone = document.getElementById("resetPhone").value;
@@ -92,9 +77,7 @@ window.resetPassword = async function(event) {
   const confirmNewPassword = document.getElementById("confirmNewPassword").value;
 
   if (newPassword !== confirmNewPassword) {
-  showhideDiv(true,"overlaypop");
-    showMessagePop(true, "Passwords do not match with Confirm Password, Re-enter the password." )
-    // alert("Passwords do not match.");
+    ShowMessagepop( "Passwords do not match with Confirm Password, Re-enter the password." )
     return;
   }
 
@@ -109,9 +92,7 @@ window.resetPassword = async function(event) {
   const snapshot = await getDocs(q);
 
   if (snapshot.empty) {
-    showhideDiv(true,"overlaypop");
-    showMessagePop(true, "Details Entered is not matching, try with valid Details." );
-    // alert("No matching swimmer found.");
+    ShowMessagepop( "Details Entered is not matching, try with valid Details." );
     return;
   }
 
@@ -120,11 +101,7 @@ window.resetPassword = async function(event) {
   const userdata= userDoc.data();
 
   await updateDoc(userRef, { password: encodedNewPassword });
-  showhideDiv(true,"overlaypop");
-
-  showMessagePop(true, "Hello "  + userdata.name +  ", Password reset successful. You can now start using portal by login ID :"+userdata.swimmer_id);
-  
-  // alert("Password reset successful. You can now log in.");
+  ShowMessagepop( "Hello '"  + userdata.name +  "', Password reset successful. You can now start using portal by login ID :"+userdata.swimmer_id);
 };
 
 window.toggleResetForm = function() {

@@ -173,8 +173,7 @@ window.registerSwimmer =async function (event) {
   }
   
   const duplicateName = await isDuplicateName(name);
-  if (duplicateName) {
-    
+  if (duplicateName) {   
     
     ShowMessagepop("User Name '"+ name + "' Already exists please try with other Name  (you may can swap initial and name)" );
     return;

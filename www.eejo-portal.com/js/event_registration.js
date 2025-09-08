@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function DisplayMeetRegister(event) {
   event.preventDefault();
-
   MeetNameSelected = document.getElementById('meetName').textContent;
   var dataAPI = fetch(MeetDataFirebaseBaseURL + MeetNameSelected + ".json")
     .then(response => {
@@ -50,13 +49,11 @@ async function AddEventEntries(event) {
     let FirebaseURL = MeetDataFirebaseBaseURL + HeatSelector.textContent + "/SwimmerDetails/" + user.name + ".json"
     await SaveEventToFB(FirebaseURL, datatopost)
     document.getElementById("frmEvet").reset();
-    document.getElementById("meetName").value = "";
-    showhideDiv(false, "ActivityPop", "Fetching Events");
+    document.getElementById("meetName").value = "";    
     ClearAllPop();
     openPrintWindow("EventID", user, 'EventIDcardDisp', datatopost);
   }
 }
-
 
 // Get reference to the select box
 function FillMeetnames(events) {

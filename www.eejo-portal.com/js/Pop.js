@@ -18,7 +18,7 @@ function showPopup(message) {
 
   }
 
-  function showMessagePop(Show,Message="")
+  function showMessagePop_old(Show,Message="")
   {
     showhideDiv(false,"ActivityPop");
     const MessagePop = document.getElementById("MessagePop");
