@@ -173,7 +173,7 @@ if (!isValidTimeFormat(inputs[3].value)) {
           document.getElementById("swimmerId").value = SwID;
           document.getElementById("swimmerName").value = user.name;
           // UpdateProfilePage(user);
-          // document.getElementById("Welcommsg").innerText= "Welcome to Eejo Swimming Portal " +  user.swimmer_id;
+          // document.getElementById("Welcommsg").innerText= "Welcome to Eejo Swim Portal " +  user.swimmer_id;
         }
         
         loadSwimmerPerformance(); // Refresh table

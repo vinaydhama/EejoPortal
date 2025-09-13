@@ -32,8 +32,6 @@ body.light-mode {
   color: #000;
 }
 
-
-
 body.light-mode .top-banner {
   background-color: #cce6ff;
 }
@@ -48,7 +46,7 @@ body.light-mode .top-banner {
 .profile {
   position: relative;
   cursor: pointer;
-  margin-top: 10px;
+  /* margin-top: -10%; */
 }
 
 .profile img {
@@ -98,7 +96,7 @@ body.light-mode .profile-popup a:hover {
 display: flex;
 flex-direction: column; /* Align items horizontally */
 justify-content: space-between; /* Optional: adds spacing between items */
-align-items: center; /* Optional: aligns items vertically */
+align-items:start; /* Optional: aligns items vertically */
 gap: 5px; /* Optional: spacing between items */
 
   /* width: 220px; */

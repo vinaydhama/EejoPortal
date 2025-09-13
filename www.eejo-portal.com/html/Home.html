@@ -8,7 +8,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 
-  <title>Welcome to Eejo Swimming Portal</title>
+  <title>Welcome to Eejo Swim Portal</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/AdoptiveStyle.css">
   <link rel="stylesheet" href="../css/FitForm.css">
@@ -19,11 +19,6 @@
 
 <body>
   <header>
-    <div class="logo">
-      <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
-      Eejo Swimming Portal
-    </div>
-
     <div class="profile" onclick="">
       <div class="dark-mode-toggle">
 
@@ -36,22 +31,29 @@
         </div>
       </div>
     </div>
+    <div class="logo" style="display: flex; align-items: center; background-image: '../images/eejo_max.png';" >
+      <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
+      <img src="../images/eejo_max.png" style="height:100px; margin-top: 0px;">
+      <h1>Eejo Swim Portal </h1>
+    </div>
+
+    
     <label aria-disabled="true" class="dark-mode-toggle" onclick="toggleDarkMode()"> 🌗
 
   </header>
-  <nav>
+  <!-- <nav> -->
 
-    <div class="sidebar" id="sidebar">
+    <div class="sidebar"  id="sidebar">
       <button onclick="location.href='Home.html'"> Home</button>
       <button onclick="location.href='event_registration.html'"> Event Registration</button>
       <button onclick="location.href='password_recovery.html'"> Password Recovery</button>
       <button onclick="location.href='reports.html'"> Reports</button>
     </div>
-  </nav>
+  <!-- </nav> -->
   <div class="container">
     <!-- <form> -->
 
-    <h1 id="loginname">Welcome to Eejo Swimming Portal</h1>
+    <h1 id="loginname">Welcome to Eejo Swim Portal</h1>
 
     <div class="carousel-container" id="carouselContainer">
       <div class="carousel-track" id="carouselTrack">
@@ -149,9 +151,9 @@
       </div>
     </div>
     <div class="indicators" id="indicators"></div>
-    <div class="carousel-buttons">
-      <button onclick="manualSlide(-1)">⬅️ Prev</button>
-      <button onclick="manualSlide(1)">Next ➡️</button>
+    <div class="carousel-buttons" style="display: flex; flex-direction: row;">
+      <button onclick="manualSlide(-1)" style="width: auto;">⬅️</button>
+      <button onclick="manualSlide(1)">➡️</button>
     </div>
   </div>
   <!-- </form> -->

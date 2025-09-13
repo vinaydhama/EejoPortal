@@ -17,12 +17,17 @@ window.onclick = function (event) {
     if (!event.target.closest('.profile')) {
       popup.style.display = 'none';
     }
+    if (event.target.closest('.profile-popup')) {
+      popup.style.display = 'none';
+    }
   }
 
-  // const sidebar = document.getElementById('sidebar');
-  // if (sidebar) {    
-  //   sidebar.style.display = 'none';    
-  // }
+  const sidebar = document.getElementById('sidebar');
+  if (sidebar) {   
+    if (!event.target.closest('.toggle-sidebar')) { 
+      document.getElementById('sidebar').classList.add('folded');
+    }
+  }
 }
 
 function toggleDarkMode() {
@@ -58,10 +63,8 @@ function UpdateProfilePage(user) {
 }
 
 
-function openPrintWindow(IDType,user,ParentDev,datatopost) {
-  
+function openPrintWindow(IDType,user,ParentDev,datatopost) {  
   sessionStorage.setItem("datatopost", JSON.stringify(datatopost));
-
   window.open(`IDcard.html?IDType=${encodeURIComponent(IDType)}&user=${user}&ParentDev=${ParentDev}`, 'PrintWindow', 'width=800,height=600');
 }
 
