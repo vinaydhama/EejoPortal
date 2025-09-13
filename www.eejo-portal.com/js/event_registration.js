@@ -7,6 +7,7 @@ let MeetDate = "";
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("frmEvet");
   form.addEventListener("submit", AddEventEntries);
+  ClearAllPop();
 });
 
 async function DisplayMeetRegister(event) {
@@ -26,6 +27,8 @@ async function DisplayMeetRegister(event) {
     })
 }
 async function AddEventEntries(event) {
+  let now = new Date();
+
   console.log("Register function called");
   ShowActivitypop("Fetching Events");
   event.preventDefault();
@@ -44,12 +47,12 @@ async function AddEventEntries(event) {
     }
     datatopost = {
       "club": user.ClubName, "Group": ElegableGroup, "ID": user.swimmer_id, "Events": swEvents, "MeetName": MeetName, "MeetAddress": MeetAddress,
-      "MeetDate": MeetDate
+      "MeetDate": MeetDate,"RegTime": formatDateManually(now)
     };
     let FirebaseURL = MeetDataFirebaseBaseURL + HeatSelector.textContent + "/SwimmerDetails/" + user.name + ".json"
     await SaveEventToFB(FirebaseURL, datatopost)
     document.getElementById("frmEvet").reset();
-    document.getElementById("meetName").value = "";    
+    document.getElementById("meetName").value = "";
     ClearAllPop();
     openPrintWindow("EventID", user, 'EventIDcardDisp', datatopost);
   }
@@ -120,7 +123,7 @@ function ListApplicableEvents(selectedGroup, meetData) {
   }
   // Create time input
   const FormSubmit = document.createElement("button");
-  FormSubmit.textContent = "submit"
+  FormSubmit.textContent = "Register"
   FormSubmit.type = "submit";
   FormSubmit.addEventListener("onsubmit", () => { AddEventEntries(); });
   frmSwSelectedEvents.appendChild(FormSubmit);
@@ -146,6 +149,7 @@ async function FetchMeetNames() {
   ShowActivitypop("Updating MeetNames..");
   var dataAPI = fetch(MeetRegInfoFBURL)
     .then(response => {
+      // ClearAllPop();
       return response.json()
     })
     .then(data => {

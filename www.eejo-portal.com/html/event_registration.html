@@ -9,12 +9,11 @@
 
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/Pop.css">
-<link rel="stylesheet" href="../css/GeneralStyle.css">
+<!-- <link rel="stylesheet" href="../css/GeneralStyle.css"> -->
 <link rel="stylesheet" href="../css/AdoptiveStyle.css">
 <link rel="stylesheet" href="../css/FitForm.css">
 <link rel="stylesheet" href="../css/EventTabDisp.css">
-<link rel="stylesheet" href="../css/Slider.css">
-
+<!-- <link rel="stylesheet" href="../css/Slider.css"> -->
 
 <head>
   <meta charset="UTF-8">
@@ -34,7 +33,7 @@
     <div class="profile" onclick="">
       <div class="dark-mode-toggle">
 
-        <img src="../images/profile.jpg" alt="Profile" id="UserPhoto" onclick="toggleProfilePopup()">
+        <img src="../images/profile.png" alt="Profile" id="UserPhoto" onclick="toggleProfilePopup()">
         <div class="profile-popup" id="profilePopup">
           <label id="lblUserName"> </label>
           <a href="EditUser.html">Edit Profile</a>
@@ -56,57 +55,51 @@
 
   </nav>
   <div class="container">
-    <form>
-      <div class="Table-container">
-        <div class="event-card" id="eventCard">
-          <img id="eventImage" alt="Event Image">
-          <h2 id="meetName">Select an Event</h2>
-          <p><strong>Date:</strong> <span id="eventDate">--</span></p>
-          <p><strong>Days Left:</strong> <span id="eventDays">--</span></p>
-          <p><strong>Location:</strong> <span id="eventLocation">--</span></p>
-          <p><strong>No. of Events:</strong> <span id="eventType">--</span></p>
-          <p><strong>Description:</strong> <span id="eventDescription">--</span></p>
-          <button onclick="DisplayMeetRegister(event)" id="registerBtn" style="display:none;">Register</button>
-        </div>
-
-        <div class="event-table" style="height:150px; overflow-y:auto;">
-          <table id="eventTable" style="height=10px">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Name</th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-        </div>
+    <div class="Table-container">
+      <div class="event-card" id="eventCard">
+        <img id="eventImage" alt="Event Image">
+        <h2 id="meetName">Select an Event</h2>
+        <p><strong>Date:</strong> <span id="eventDate">--</span></p>
+        <p><strong>Days Left:</strong> <span id="eventDays">--</span></p>
+        <p><strong>Location:</strong> <span id="eventLocation">--</span></p>
+        <p><strong>No. of Events:</strong> <span id="eventType">--</span></p>
+        <p><strong>Description:</strong> <span id="eventDescription">--</span></p>
+        <button onclick="DisplayMeetRegister(event)" id="registerBtn" style="display:none;">Events</button>
       </div>
 
+      <div class="event-table" style="height:150px; overflow-y:auto;">
+        <table id="eventTable" style="height:10px">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-    </form>
     <p id="eligibilityResult"></p>
-   
-    <form id="frmEvet" style="display:none">
+
+    <form id="frmEvet" style="display:none;">
       <button type="submit">Register</button>
     </form>
-
-    
-
+  </div>
   <footer>
     <p>&copy; 2025 <a href="www.g.com">Tiny Techniques</a> v 1.0.002</p>
   </footer>
 
-  
-  <div class="overlay" id="overlaypop" >
+  <div class="overlay" id="overlaypop">
     <div class="Msgpopup" id="ActivityPop">
-      <img id="Ejogo" style="margin: 20%;" class="EejoLogo" src="../images/eejo_max.png"
-        alt="WWW.TinyTechniques.com">
-      <h4 id="BusyPopMsg"><b> </b></h1>
+      <img id="Ejogo" style="margin: 20%;" class="EejoLogo" src="../images/eejo_max.png" alt="WWW.TinyTechniques.com">
+      <h4 id="BusyPopMsg"><b> </b></h1>        
     </div>
 
     <div class="Msgpopup" id="MessagePop">
-      <h1 style="column-fill: auto; color: white; background-color: rgb(22, 1, 211); text-align: justify;">Eejo portal </h1>
+      <h1 style="column-fill: auto; color: white; background-color: rgb(22, 1, 211); text-align: justify;">Eejo portal
+      </h1>
       <p class="SlideP" id="popupMessage"></p>
       <button class="Cancelbtn" onclick="ClearAllPop()">Close</button>
     </div>
@@ -116,7 +109,7 @@
 
 <script>
   toggleSidebar();
-   hidePopup("overlaypop");
+  // hidePopup("overlaypop");
   MeetRegData = FetchMeetNames();
   const displayParagraph = document.getElementById('selectedValueDisplay');
   let user = ReadSessionData("user")

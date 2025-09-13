@@ -50,3 +50,15 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.EejoLogo {
+  position: relative;
+  margin: 5%;
+  top: 0%;
+  left: 0%;
+  width: 100px;
+  height: 100px;
+  background: rgba(7, 22, 232, 0.53);
+  border-radius: 20px;
+  animation: animate 2s linear infinite;
+}

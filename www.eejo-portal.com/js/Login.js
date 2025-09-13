@@ -37,9 +37,8 @@ async function encodePassword(password) {
 }
 
 window.loginUser = async function(event) {
-  event.preventDefault();
-  
-  ShowActivitypop("ActivityPop","Verifying Credentials");
+  event.preventDefault();  
+  ShowActivitypop("Verifying Credentials");
 
   const swimmerID = document.getElementById("swimmerID").value;
   const password = document.getElementById("password").value;
@@ -69,7 +68,7 @@ window.loginUser = async function(event) {
 
 window.resetPassword = async function(event) {
   event.preventDefault();
-  ShowActivitypop("ActivityPop","Verifying Details");
+  ShowActivitypop("Verifying Details");
   const name = document.getElementById("resetName").value;
   const dob = document.getElementById("resetDOB").value;
   const phone = document.getElementById("resetPhone").value;

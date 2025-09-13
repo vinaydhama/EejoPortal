@@ -114,6 +114,8 @@ function showPopup(popName) {
   if (popobj)
   {
     popobj.classList.add('show')
+    // popobj.style.display='block';
+
   }
 
 }
@@ -125,5 +127,6 @@ function hidePopup(popName) {
   if (popobj)
   {
     popobj.classList.remove('show')
+    // popobj.style.display='none';
   }
 }
