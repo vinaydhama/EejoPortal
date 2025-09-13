@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="../css/FitForm.css">
   <link rel="stylesheet" href="../css/Slider.css">
   <link rel="stylesheet" href="../css/TimerStyle.css">
+  <link rel="stylesheet" href="../css/Pop.css">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 
@@ -22,6 +24,8 @@
   <script src="../js/script.js" defer></script>
   <script type="module" src="../js/AddSwimmerRecord.js"></script>
   <script src="../js/Utility.js"></script>
+  <script src="../js/Pop.js"></script>
+
 
   <script src="../js/script.js"></script>
   <script src="../js/GraphVisuliser.js"></script>
@@ -33,13 +37,9 @@
 <body>
 
   <header>
-    <div class="logo">
-      <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
-      Eejo Swim Portal
-    </div>
-
     <div class="profile" onclick="">
       <div class="dark-mode-toggle">
+
         <img src="../images/profile.jpg" alt="Profile" id="UserPhoto" onclick="toggleProfilePopup()">
         <div class="profile-popup" id="profilePopup">
           <label id="lblUserName"> </label>
@@ -49,24 +49,30 @@
         </div>
       </div>
     </div>
-    <label aria-disabled="true" class="dark-mode-toggle" onclick="toggleDarkMode()"> 🌗
+    <div class="logo" >
+      <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
+      <img src="../images/eejo_max.png" style="height:100px; margin-top: 0px;">
+      <h1 style="align-items:start; text-align: left; margin: 5%;">
+        <b> Eejo <br>
+          Swim Portal</b>
+      </h1>
+    </div>
+
+    <label aria-disabled="true" class="dark-mode-toggle" onclick="toggleDarkMode()"> 🌗 </label>
 
   </header>
-  <nav>
-    <div class="sidebar" id="sidebar">
-      <button onclick="location.href='Home.html'"> Home</button>
-      <button onclick="location.href='event_registration.html'"> Event Registration</button>
-      <button onclick="location.href='password_recovery.html'"> Password Recovery</button>
-      <button onclick="location.href='reports.html'"> Reports</button>
-      <!-- </div>     -->
-    </div>
-  </nav>
-
+  <div class="sidebar" id="sidebar">
+    <button onclick="location.href='Home.html'"> Home</button>
+    <button onclick="location.href='event_registration.html'"> Event Registration</button>
+    <button onclick="location.href='password_recovery.html'"> Password Recovery</button>
+    <button onclick="location.href='reports.html'"> Reports</button>
+  </div>
+  
   <div class="container">
     <form>
     <h3 style="align-items: center;">Swimmer Performance Report</h3>
 
-    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 600px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
       <button title="Add Record" class="add-btn"
         onclick="{toggleProfilePopup('AddRecodeddiv'); document.getElementById('AddRecodeddiv').scrollIntoView({ behavior: 'smooth' }); } "><i
           class="fas fa-add"></i> </button>

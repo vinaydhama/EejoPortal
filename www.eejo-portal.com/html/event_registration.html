@@ -25,18 +25,11 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 </head>
-
 <body>
   <header>
-    <div class="logo">
-      <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
-      Eejo Swim Portal
-    </div>
-
     <div class="profile" onclick="">
       <div class="dark-mode-toggle">
-
-        <img src="../images/profile.png" alt="Profile" id="UserPhoto" onclick="toggleProfilePopup()">
+        <img src="../images/profile.jpg" alt="Profile" id="UserPhoto" onclick="toggleProfilePopup()">
         <div class="profile-popup" id="profilePopup">
           <label id="lblUserName"> </label>
           <a href="EditUser.html">Edit Profile</a>
@@ -45,18 +38,25 @@
         </div>
       </div>
     </div>
-    <label aria-disabled="true" class="dark-mode-toggle" onclick="toggleDarkMode()"> 🌗
+    <div class="logo">
+      <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
+      <img src="../images/eejo_max.png" style="height:100px; margin-top: 0px;">
+      <h1 style="align-items:start; text-align: left; margin: 5%;">
+        <b> Eejo <br>
+          Swim Portal</b>
+      </h1>
+    </div>
+
+    <label aria-disabled="true" class="dark-mode-toggle" onclick="toggleDarkMode()"> 🌗 </label>
 
   </header>
-  <nav>
-    <div class="sidebar" id="sidebar">
-      <button onclick="location.href='Home.html'"> Home</button>
-      <button onclick="location.href='event_registration.html'"> Event Registration</button>
-      <button onclick="location.href='password_recovery.html'"> Password Recovery</button>
-      <button onclick="location.href='reports.html'"> Reports</button>
-      <!-- </div> -->
+  <div class="sidebar" id="sidebar">
+    <button onclick="location.href='Home.html'"> Home</button>
+    <button onclick="location.href='event_registration.html'"> Event Registration</button>
+    <button onclick="location.href='password_recovery.html'"> Password Recovery</button>
+    <button onclick="location.href='reports.html'"> Reports</button>
+  </div>
 
-  </nav>
   <div class="container">
     <div class="Table-container">
       <div class="event-card" id="eventCard">
@@ -93,20 +93,13 @@
   <footer>
     <p>&copy; 2025 <a href="www.g.com">Tiny Techniques</a> v 1.0.002</p>
   </footer>
-  <!-- <div class="Msgpopup" id="ActivityPopw">
-    <img id="Ejogo" style="margin: 20%;" class="EejoLogo" src="../images/eejo_max.png" alt="WWW.TinyTechniques.com">
-    <i class="fa fa-circle-o-notch fa-spin" style="font-size:64px;color: cornflowerblue;"></i>
-    <h4 id="BusyPopMsg"><b> </b></h1>        
-  </div>
-  <div class="overlay" id="overlaypop"> -->
-    
 
-    <div class="Msgpopup" id="MessagePop">
-      <h1 style="column-fill: auto; color: white; background-color: rgb(22, 1, 211); text-align: justify;">Eejo portal
-      </h1>
-      <p class="SlideP" id="popupMessage"></p>
-      <button class="Cancelbtn" onclick="ClearAllPop()">Close</button>
-    </div>
+  <div class="Msgpopup" id="MessagePop">
+    <h1 style="column-fill: auto; color: white; background-color: rgb(22, 1, 211); text-align: justify;">Eejo portal
+    </h1>
+    <p class="SlideP" id="popupMessage"></p>
+    <button class="Cancelbtn" onclick="ClearAllPop()">Close</button>
+  </div>
   </div>
 
 </body>

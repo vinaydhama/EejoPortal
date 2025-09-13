@@ -21,8 +21,8 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      max-width: 600px;
-      background-color: #2ea7d0;
+      max-width: 800px;
+      background-color: #01bbf8;
       padding: 30px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -76,16 +76,16 @@
   }
 
   th {
-    background-color: #f2f2f2;
+    background-color: #0488fb;
     color: #333;
   }
 
   tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #7888f4;
   }
 
   tr:hover {
-    background-color: #e9e9e9;
+    background-color: #6707dc;
   }
 
   button {

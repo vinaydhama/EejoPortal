@@ -1,16 +1,16 @@
 
 :root { color-scheme: light dark; }
-body { margin: 24px; font: 14px/1.5 system-ui, "Segoe UI", Roboto, Arial, sans-serif; color: #111; }
-h1 { margin: 0 0 16px; font-size: 20px; }
-label { display:block; font-weight:600; margin-bottom:6px; }
+/* body { margin: 24px; font: 14px/1.5 system-ui, "Segoe UI", Roboto, Arial, sans-serif; color: #111; } */
+/* h1 { margin: 0 0 16px; font-size: 20px; } */
+/* label { display:block; font-weight:600; margin-bottom:6px; }
 input[type="text"] {
   width: 360px; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 8px;
-}
+} */
 .row { margin: 16px 0; display:flex; align-items:center; gap:12px; }
-button {
+/* button {
   padding: 10px 14px; border: 1px solid #1f2937; border-radius: 8px;
   background: #111827; color:#fff; font-weight:600; cursor:pointer;
-}
+} */
 button.secondary { background:#374151; border-color:#374151; }
 button.danger { background:#991b1b; border-color:#7f1d1d; }
 button:hover { filter: brightness(1.05); }
