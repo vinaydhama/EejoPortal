@@ -81,13 +81,11 @@ window.resetPassword = async function(event) {
   }
 
   const encodedNewPassword = await encodePassword(newPassword);
-
   const q = query(collection(db, "swimmers"),
     where("name", "==", name),
     where("dob", "==", dob),
     where("phone", "==", phone)
   );
-
   const snapshot = await getDocs(q);
 
   if (snapshot.empty) {

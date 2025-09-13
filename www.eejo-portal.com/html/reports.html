@@ -63,6 +63,7 @@
   </nav>
 
   <div class="container">
+    <form>
     <h3 style="align-items: center;">Swimmer Performance Report</h3>
 
     <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 600px;">
@@ -82,6 +83,7 @@
       <!-- <button  title="Print Report" class="print-btn" onclick="{tableToJSON('performanceTable'); window.open(`PrintReport.html`, 'Print Report ', 'width=800,height=600'); }"><i class="'fas fa-print"></i> </button> -->
 
     </div>
+  </form>
     <div id="filters" style="display: none;">
       <div>
         <input type="text" id="filterSwimmerId" placeholder="Filter by Swimmer ID" onkeyup="filterTable()" />
@@ -378,8 +380,8 @@
   
   <div class="overlay" id="overlaypop" >
     <div class="Msgpopup" id="ActivityPop">
-      <img id="Ejogo" style="margin: 20%;" class="EejoLogo" src="../images/eejo_max.png"
-        alt="WWW.TinyTechniques.com">
+      <img id="Ejogo" style="margin: 20%;" class="EejoLogo" src="../images/eejo_max.png" alt="WWW.TinyTechniques.com">
+      <i class="fa fa-circle-o-notch fa-spin" style="font-size:64px;color: cornflowerblue;"></i>
       <h4 id="BusyPopMsg"><b> </b></h1>
     </div>
 
