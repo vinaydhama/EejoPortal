@@ -14,6 +14,8 @@
 <link rel="stylesheet" href="../css/FitForm.css">
 <link rel="stylesheet" href="../css/EventTabDisp.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/Slider.css">
+
 
 
 <!-- <link rel="stylesheet" href="../css/Slider.css"> -->
@@ -27,9 +29,10 @@
 </head>
 <body>
   <header>
+
     <div class="profile" onclick="">
       <div class="dark-mode-toggle">
-        <img src="../images/profile.jpg" alt="Profile" id="UserPhoto" onclick="toggleProfilePopup()">
+        <img class="ProfileImage" src="../images/profile.jpg" alt="Profile" id="UserPhoto" onclick="toggleProfilePopup()">
         <div class="profile-popup" id="profilePopup">
           <label id="lblUserName"> </label>
           <a href="EditUser.html">Edit Profile</a>
@@ -40,14 +43,13 @@
     </div>
     <div class="logo">
       <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
-      <img src="../images/eejo_max.png" style="height:100px; margin-top: 0px;">
+      <img  src="../images/eejo_max.png" style="height:100px; margin-top: 0px;">
       <h1 style="align-items:start; text-align: left; margin: 5%;">
         <b> Eejo <br>
           Swim Portal</b>
       </h1>
     </div>
-
-    <label aria-disabled="true" class="dark-mode-toggle" onclick="toggleDarkMode()"> 🌗 </label>
+  <label aria-disabled="true" class="dark-mode-toggle" onclick="toggleDarkMode()"> 🌗 </label>
 
   </header>
   <div class="sidebar" id="sidebar">
