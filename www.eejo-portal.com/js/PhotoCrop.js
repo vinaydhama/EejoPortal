@@ -25,24 +25,7 @@ let cropper;
     }
   });
 
-  function cropImage() {
-    if (cropper) {
-      const canvas = cropper.getCroppedCanvas({
-        width: 300,
-        height: 300,
-      });
-
-      // Simulate upload
-      canvas.toBlob(blob => {
-        const formData = new FormData();
-        formData.append('croppedImage', blob);
-
-        // Simulated upload
-        console.log("Simulated upload of cropped image:", formData.get('croppedImage'));
-        alert('Image cropped and ready for upload!');
-      });
-    }
-  }
+  
 
   function resetCrop() {
     if (cropper) {

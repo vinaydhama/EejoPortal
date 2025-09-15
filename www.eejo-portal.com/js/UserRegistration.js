@@ -95,6 +95,26 @@ async function isDuplicateSwimmer( dob, gender) {
   const querySnapshot = await getDocs(q);
   return !querySnapshot.empty;
 }
+async function cropImage() {
+  if (cropper) {
+    const canvas = cropper.getCroppedCanvas({
+      width: 300,
+      height: 300,
+    });
+
+    // Simulate upload
+    await canvas.toBlob(blob => {
+      const formData = new FormData();
+      formData.append('croppedImage', blob);
+      return uploadFile(blob,`photos/${swimmer_id}`, "photoProgress")
+
+      // Simulated upload
+      // console.log("Simulated upload of cropped image:", formData.get('croppedImage'));
+      // alert('Image cropped and ready for upload!');
+    });
+  }
+}
+window.cropImage= cropImage();
 
 async function uploadFile(file, pathPrefix, progressElementId) {
   return new Promise((resolve, reject) => {
@@ -192,7 +212,8 @@ window.registerSwimmer =async function (event) {
   try {
     
     ShowActivitypop("Uploading Documents...");
-    const photoPath = await uploadFile(photoFile, `photos/${swimmer_id}`, "photoProgress");
+    // const photoPath = await uploadFile(photoFile, `photos/${swimmer_id}`, "photoProgress");
+    const photoPath = await cropImage();
     const id1Path = await uploadFile(id1File, `ids/${swimmer_id}/id1`, "id1Progress");
     const id2Path = await uploadFile(id2File, `ids/${swimmer_id}/id2`, "id2Progress");
 
@@ -324,8 +345,10 @@ window.EditSwimmer= async function (event) {
     else
     {
       photoFile= document.getElementById("photoFile").files[0];
+     photoPath = await cropImage(photoFile, `photos/${swimmer_id}`, "photoProgress")
+     
+      // photoPath = await uploadFile(photoFile, `photos/${swimmer_id}`, "photoProgress");
 
-     photoPath = await uploadFile(photoFile, `photos/${swimmer_id}`, "photoProgress");
 
     }
 

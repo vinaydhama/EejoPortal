@@ -35,17 +35,17 @@ function GenerateQRWithLogo(data, canvasId, logoId, Encode = true, QRwidth = 300
 
 function DownloadIDcard(idcardplaceholder,imagePlaceholder,name, FilePrefix="") {
   const element = document.getElementById(idcardplaceholder);
-  const images = element.querySelectorAll(imagePlaceholder);
+  const img = document.getElementById(imagePlaceholder);
   const promises = [];
 
-  images.forEach(img => {
+  // images.forEach(img => {
     if (!img.complete || img.naturalWidth === 0) {
       promises.push(new Promise(resolve => {
         img.onload = resolve;
         img.onerror = resolve; // Resolve even if image fails to load
       }));
     }
-  });
+  // });
 
   Promise.all(promises).then(() => {
     html2canvas(element, {
@@ -62,32 +62,6 @@ function DownloadIDcard(idcardplaceholder,imagePlaceholder,name, FilePrefix="") 
   });
 }
 
-
-// function DownloadIDcard(idcardplaceholder, FilePrefix = "") {
-
-  
-// // html2canvas(document.querySelector("#capture-area"), {
-// //   useCORS: true,
-// //   allowTaint: false,
-// //   logging: true
-// // }).then(canvas => {
-// //   document.body.appendChild(canvas);
-// // });
-
-
-//   html2canvas(document.getElementById(idcardplaceholder),{ 
-//     useCORS: true,
-//     allowTaint: false,
-//     logging: true}).then(canvas => {    
-//     const link = document.createElement('a');
-//     if (FilePrefix != "") {
-//       FilePrefix = FilePrefix + "_";
-//     }
-//     link.download = name + FilePrefix + 'ID_Card.png';
-//     link.href = canvas.toDataURL();
-//     link.click();
-//   });
-// }
 
 function UpdateEventID(userinfo, datatopost, ParentContainer) {
 

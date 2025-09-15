@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="../css/PhotoCrop.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.css" rel="stylesheet"/>
   
 
 
@@ -31,7 +32,7 @@
   <script src="../js/IDHelper.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.js"></script>
 
 </head>
 
@@ -69,10 +70,10 @@
   </div>
   <div class="container">
     <!-- <div class="grid"> -->
-      <h1>Edit Profile</h1>
+      <!-- <h1>Edit Profile</h1>
       <div id="preview" style="width: 300px; height: 300px;">
         <img id="image" style="display:block;" src="../images/eejo_BW.png" />
-      </div>
+      </div> -->
 
     <form id="updateForm">
 
@@ -120,11 +121,10 @@
       </label>
 
       <label>Photo Upload: </label>
-        <img id="UploadedPhoto" style="margin-left:45%" width=100PX src="../images/profile.jpg">
+        <div id="preview">      
+          <img id="UploadedPhoto" style="display:none;">
+        </div>
         <input type="file" id="photoFile" accept="image/*">
-      
-      
-
         <div class="controls">
           <button type="button" onclick="cropImage()">Crop & Upload</button>
           <button  type="button" onclick="resetCrop()">Reset</button>
@@ -186,7 +186,6 @@
 </body>
 
 <script>
-
   document.addEventListener("DOMContentLoaded", function () {
 
     // document.getElementById('overlaypop2').classList.add('show');
@@ -217,10 +216,10 @@
       // loadSwimmerData();
     }
 
-    const UploadedPhoto = document.getElementById('UploadedPhoto');
-  const image = document.getElementById('image');
+  const photoFile = document.getElementById('photoFile');
+  const image = document.getElementById('UploadedPhoto');
 
-  UploadedPhoto.addEventListener('change', function (e) {
+  photoFile.addEventListener('change', function (e) {
     const files = e.target.files;
     if (files && files.length > 0) {
       const reader = new FileReader();
