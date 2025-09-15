@@ -91,8 +91,8 @@ function editRow(docId,event) {
 
     //   <button onclick="saveRow('${docId}')">Save</button>
     cells[cells.length - 1].innerHTML = `
-    <button class="save-btn" onclick="saveRow('${doc.id}',event)"><i class="fas fa-save"></i> </button>
-    <button class="cancel-btn" onclick="cancelEdit('${doc.id}',event)"><i class="fas fa-cancel"></i> </button>  `;
+    <button class="save-btn" onclick="saveRow('${docId}',event)"><i class="fas fa-save"></i> </button>
+    <button class="cancel-btn" onclick="cancelEdit('${docId}',event)"><i class="fas fa-cancel"></i> </button>  `;
     // <button onclick="cancelEdit('${docId}')">Cancel</button>
 }
 
@@ -324,9 +324,32 @@ document.addEventListener("DOMContentLoaded", () => {
         filterTable();
     });
 
+    // <th id="SlNoTh" >Sl.No</th>
+    //         <th id="Rankth" >Rank</th>
+
+    //         <th id="EventIDth" >Event ID</th>
+    //         <th id="HeatDateTimeth">Heat DateTime</th>
+
+    //         <th id="Stroketh" >Stroke</th>
+    //         <th id="Distanceth" >Distance</th>
+    //         <th id="Timeth" >Time</th>
+
+    //         <th id="GoodThingsth" onclick=>Good Things</th>
+    //         <th id="ToImproveth" onclick=>To Improve</th>
+    //         <th id="EditTH">Edit</th>
+
+    const SlNoTh = document.getElementById('SlNoTh');
+    SlNoTh.addEventListener("click", () => {
+        sortTable(0);
+    });
+    const Rankth = document.getElementById('Rankth');
+    Rankth.addEventListener("click", () => {
+        sortTable(1);
+    });
+
     const EventIDth = document.getElementById('EventIDth');
     EventIDth.addEventListener("click", () => {
-        sortTable(1);
+        sortTable(2);
     });
     const Timeth = document.getElementById('Timeth');
     Timeth.addEventListener("click", () => {

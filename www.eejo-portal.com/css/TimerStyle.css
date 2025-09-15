@@ -1,12 +1,12 @@
 
-:root { color-scheme: light dark; }
-/* body { margin: 24px; font: 14px/1.5 system-ui, "Segoe UI", Roboto, Arial, sans-serif; color: #111; } */
-/* h1 { margin: 0 0 16px; font-size: 20px; } */
+/* :root { color-scheme: light dark; } */
+/* body { margin: 24px; font: 14px/1.5 system-ui, "Segoe UI", Roboto, Arial, sans-serif; color: #111; }
+h1 { margin: 0 0 16px; font-size: 20px; } */
 /* label { display:block; font-weight:600; margin-bottom:6px; }
 input[type="text"] {
   width: 360px; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 8px;
-} */
-.row { margin: 16px 0; display:flex; align-items:center; gap:12px; }
+}
+.row { margin: 16px 0; display:flex; align-items:center; gap:12px; } */
 /* button {
   padding: 10px 14px; border: 1px solid #1f2937; border-radius: 8px;
   background: #111827; color:#fff; font-weight:600; cursor:pointer;
@@ -17,7 +17,7 @@ button:hover { filter: brightness(1.05); }
 .hint { color:#6b7280; font-size:12px; }
 
 /* ---- Modal <dialog> styling ---- */
-dialog#timerDialog {
+/* dialog#timerDialog {
   border: none;
   border-radius: 12px;
   padding: 18px;
@@ -29,7 +29,7 @@ dialog#timerDialog::backdrop {
   backdrop-filter: blur(2px);
 }
 .dlg-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
-.dlg-title { font-size:18px; font-weight:700; margin:0; }
+.dlg-title { font-size:18px; font-weight:700; margin:0; } */
 .close-btn {
   background: transparent; color: inherit; border: 1px solid #cbd5e1; border-radius: 8px;
   padding: 6px 10px; cursor: pointer;
@@ -40,7 +40,7 @@ dialog#timerDialog::backdrop {
   text-align: center; letter-spacing: .5px;
   padding: 12px; border: 1px solid #cbd5e1; border-radius: 10px; margin: 8px 0 14px;
 }
-.grid {
+/* .grid {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
 }
-.kbd-hints { margin-top: 8px; color:#6b7280; font-size:12px; }
+.kbd-hints { margin-top: 8px; color:#6b7280; font-size:12px; } */

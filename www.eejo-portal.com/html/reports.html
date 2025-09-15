@@ -17,10 +17,6 @@
   <link rel="stylesheet" href="../css/Pop.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-
-
-
   <script src="../js/script.js" defer></script>
   <script type="module" src="../js/AddSwimmerRecord.js"></script>
   <script src="../js/Utility.js"></script>
@@ -36,7 +32,7 @@
 
 <body>
 
-  <header>
+  <header class="headecls">
     <div class="profile" onclick="">
       <div class="dark-mode-toggle">
 
@@ -49,7 +45,7 @@
         </div>
       </div>
     </div>
-    <div class="logo" >
+    <div class="logo">
       <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
       <img src="../images/eejo_max.png" style="height:100px; margin-top: 0px;">
       <h1 style="align-items:start; text-align: left; margin: 5%;">
@@ -67,29 +63,31 @@
     <button onclick="location.href='password_recovery.html'"> Password Recovery</button>
     <button onclick="location.href='reports.html'"> Reports</button>
   </div>
-  
+
   <div class="container">
-    <form>
-    <h3 style="align-items: center;">Swimmer Performance Report</h3>
+    <h1 style="align-items: center; ">Swimmer Performance Report</h1>
 
-    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-      <button title="Add Record" class="add-btn"
-        onclick="{toggleProfilePopup('AddRecodeddiv'); document.getElementById('AddRecodeddiv').scrollIntoView({ behavior: 'smooth' }); } "><i
-          class="fas fa-add"></i> </button>
-      <button title="Filter Record" class="filter-btn" onclick="{toggleProfilePopup('filters')}"><i
-          class="fas fa-filter"></i> </button>
-      <button title="Analyse " class="Analyse-btn"
-        onclick=" { document.getElementById('chartVis').innerHTML=''; toggleProfilePopup('chartContainer'); plotVisualiser();  document.getElementById('chartContainer').scrollIntoView({ behavior: 'smooth' });}"><i
-          class="fas fa-atom"></i> </button>
 
-      <button class="print-btn"
-        onclick="{tableToJSON('performanceTable'); window.open(`PrintReport.html`, 'Print Report ', 'width=800,height=600'); }"><i
-          class='fas fa-print'></i></button>
+    <!-- <form> -->
 
-      <!-- <button  title="Print Report" class="print-btn" onclick="{tableToJSON('performanceTable'); window.open(`PrintReport.html`, 'Print Report ', 'width=800,height=600'); }"><i class="'fas fa-print"></i> </button> -->
+      <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+        <button title="Add Record" class="add-btn"
+          onclick="{toggleProfilePopup('AddRecodeddiv'); document.getElementById('AddRecodeddiv').scrollIntoView({ behavior: 'smooth' }); } "><i
+            class="fas fa-add"></i> </button>
+        <button title="Filter Record" class="filter-btn" onclick="{toggleProfilePopup('filters')}"><i
+            class="fas fa-filter"></i> </button>
+        <button title="Analyse " class="Analyse-btn"
+          onclick=" { document.getElementById('chartVis').innerHTML=''; toggleProfilePopup('chartContainer'); plotVisualiser();  document.getElementById('chartContainer').scrollIntoView({ behavior: 'smooth' });}"><i
+            class="fas fa-atom"></i> </button>
 
-    </div>
-  </form>
+        <button class="print-btn"
+          onclick="{tableToJSON('performanceTable'); window.open(`PrintReport.html`, 'Print Report ', 'width=800,height=600'); }"><i
+            class='fas fa-print'></i></button>
+
+        <!-- <button  title="Print Report" class="print-btn" onclick="{tableToJSON('performanceTable'); window.open(`PrintReport.html`, 'Print Report ', 'width=800,height=600'); }"><i class="'fas fa-print"></i> </button> -->
+
+      </div>
+    <!-- </form> -->
     <div id="filters" style="display: none;">
       <div>
         <input type="text" id="filterSwimmerId" placeholder="Filter by Swimmer ID" onkeyup="filterTable()" />
@@ -104,18 +102,18 @@
       <table id="performanceTable" class="table">
         <thead>
           <tr>
-            <th id="SlNoTh" onclick="sortTable(0)">Sl.No</th>
-            <th id="Rankth" onclick="sortTable(1)">Rank</th>
+            <th id="SlNoTh" >Sl.No</th>
+            <th id="Rankth" >Rank</th>
 
-            <th id="EventIDth" onclick="sortTable(2)">Event ID</th>
-            <th id="HeatDateTimeth" onclick="sortTable(3)">Heat DateTime</th>
+            <th id="EventIDth" >Event ID</th>
+            <th id="HeatDateTimeth">Heat DateTime</th>
 
-            <th id="Stroketh" onclick="sortTable(4)">Stroke</th>
-            <th id="Distanceth" onclick="sortTable(5)">Distance</th>
-            <th id="Timeth" onclick="sortTable(6)">Time</th>
+            <th id="Stroketh" >Stroke</th>
+            <th id="Distanceth" >Distance</th>
+            <th id="Timeth" >Time</th>
 
-            <th id="GoodThingsth" onclick="sortTable(7)">Good Things</th>
-            <th id="ToImproveth" onclick="sortTable(8)">To Improve</th>
+            <th id="GoodThingsth" onclick=>Good Things</th>
+            <th id="ToImproveth" onclick=>To Improve</th>
             <th id="EditTH">Edit</th>
 
           </tr>
@@ -125,7 +123,7 @@
     </form>
 
 
-    <div id="AddRecodeddiv" style="display: none;">
+    <form id="AddRecodeddiv" style="display: none;">
       <div class="flex-col">
         <label for="eventType">Event Type</label>
         <select id="eventType">
@@ -217,9 +215,26 @@
         <label for="HeatDateTime">Heat DateTime</label>
         <input type="datetime-local" id="HeatDateTime" placeholder="e.g., 01:23.456">
 
-        <button id="openTimer" data-target="#recordTime">Open Timer</button>
-        <span class="hint">Shortcut inside dialog: <b>S</b>tart, S<b>t</b>op, <b>R</b>eset, <b>Enter</b> =
-          Record</span>
+        <button type="button" id="openTimer" data-target="#recordTime" onclick="{toggleProfilePopup('timerDialog')}"> <i class="fa-solid fa-stopwatch" style="font-size:24px;"></i>  </button>
+        <div id="timerDialog" role="dialog" aria-modal="true" aria-labelledby="timerTitle" style="display: none;">
+          <div class="dlg-header">
+            <h2 id="timerTitle" class="dlg-title">Timer</h2>
+            <button class="close-btn" type="button" id="closeTimer" aria-label="Close timer">x</button>
+          </div>
+      
+          <div  id="display" class="timer" aria-live="polite" aria-atomic="true">00:00:00.00</div>
+      
+          <div class="grid">
+            <button title="Start" id="startBtn" class="secondary" type="button"><i class="fas fa-play"></i></button>
+            <button title="Stop" id="stopBtn" class="secondary" type="button" disabled><i class="fas fa-stop"></i></button>
+            <button title="Reset" id="resetBtn" class="danger" type="button" disabled><i class="fas fa-refresh "></i></button>
+            <button title="Record" id="recordBtn" type="button"><i class="fas fa-record-vinyl"></i></button>
+
+          </div>
+      
+          <div class="kbd-hints">Press <kbd>S</kbd>, <kbd>T</kbd>, <kbd>R</kbd>, or <kbd>Enter</kbd>. <em>Esc</em> closes the
+            dialog.</div>
+          </div>
 
         <label for="recordTime">Timings</label>
         <input type="text" id="recordTime" placeholder="e.g., 01:23.456">
@@ -229,11 +244,11 @@
         <input type="text" id="rankentry" placeholder="01">
       </div>
 
-      <button id="AddRecordbtn">Add Record</button>
+      <button type="button" id="AddRecordbtn">Add Record</button>
       <button id="CancelAddRecordbtn"
         onclick="{document.getElementById('AddRecodeddiv').style.display='none'; document.getElementById('performanceTable').scrollIntoView({ behavior: 'smooth' });}  ">Cancel</button>
 
-    </div>
+    </form>
     <div id="chartContainer">
       <canvas id="chartCanvas">
         <h2>Visualizations</h2>
@@ -365,26 +380,9 @@
     <p>&copy; 2025 <a href="www.g.com">Tiny Techniques</a> v 1.0.001</p>
   </footer>
 
-  <dialog id="timerDialog" role="dialog" aria-modal="true" aria-labelledby="timerTitle">
-    <div class="dlg-header">
-      <h2 id="timerTitle" class="dlg-title">Timer</h2>
-      <button class="close-btn" type="button" id="closeTimer" aria-label="Close timer">Close</button>
-    </div>
-
-    <div id="display" class="timer" aria-live="polite" aria-atomic="true">00:00:00.00</div>
-
-    <div class="grid">
-      <button id="startBtn" class="secondary" type="button">Start</button>
-      <button id="stopBtn" class="secondary" type="button" disabled>Stop</button>
-      <button id="resetBtn" class="danger" type="button" disabled>Reset</button>
-      <button id="recordBtn" type="button">Record</button>
-    </div>
-
-    <div class="kbd-hints">Press <kbd>S</kbd>, <kbd>T</kbd>, <kbd>R</kbd>, or <kbd>Enter</kbd>. <em>Esc</em> closes the
-      dialog.</div>
-  </dialog>
   
-  <div class="overlay" id="overlaypop" >
+
+  <div class="overlay" id="overlaypop">
     <div class="Msgpopup" id="ActivityPop">
       <img id="Ejogo" style="margin: 20%;" class="EejoLogo" src="../images/eejo_max.png" alt="WWW.TinyTechniques.com">
       <i class="fa fa-circle-o-notch fa-spin" style="font-size:64px;color: cornflowerblue;"></i>
@@ -392,7 +390,8 @@
     </div>
 
     <div class="Msgpopup" id="MessagePop">
-      <h1 style="column-fill: auto; color: white; background-color: rgb(22, 1, 211); text-align: justify;">Eejo portal </h1>
+      <h1 style="column-fill: auto; color: white; background-color: rgb(22, 1, 211); text-align: justify;">Eejo portal
+      </h1>
       <p class="SlideP" id="popupMessage"></p>
       <button class="Cancelbtn" onclick="ClearAllPop()">Close</button>
     </div>
@@ -426,7 +425,7 @@
 </script>
 <script>
   // Elements
-  const $open = document.getElementById('openTimer');
+  // const $open = document.getElementById('openTimer');
   const $dialog = document.getElementById('timerDialog');
   const $close = document.getElementById('closeTimer');
 
@@ -514,22 +513,22 @@
   }
   window.addEventListener('keydown', onKeydown);
 
-  // Open / close modal
-  $open.addEventListener('click', (e) => {
-    // get the target field selector from the button (defaults to #recordTime)
-    targetSelector = e.currentTarget.getAttribute('data-target') || '#recordTime';
+  // // Open / close modal
+  // $open.addEventListener('click', (e) => {
+  //   // get the target field selector from the button (defaults to #recordTime)
+  //   targetSelector = e.currentTarget.getAttribute('data-target') || '#recordTime';
 
-    // optional: prevent body scroll
-    document.documentElement.style.overflow = 'hidden';
-    $dialog.showModal();
-    // move focus to the first button for accessibility
-    $start.focus();
-  });
+  //   // optional: prevent body scroll
+  //   document.documentElement.style.overflow = 'hidden';
+  //   $dialog.showModal();
+  //   // move focus to the first button for accessibility
+  //   $start.focus();
+  // });
 
   $close.addEventListener('click', () => {
     // Stop the timer loop if running
     stop();
-    $dialog.close();
+    toggleProfilePopup('timerDialog')
   });
 
   // When dialog closes (via ESC or close()) — restore scroll & focus

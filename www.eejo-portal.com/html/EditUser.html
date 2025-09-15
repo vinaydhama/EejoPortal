@@ -8,7 +8,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 
-  <title>User Registration Page</title>
+  <title>Edit User</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/AdoptiveStyle.css">
   <!-- <link rel="stylesheet" href="../css/Idcard.css"> -->
@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="../css/FitForm.css">
   <link rel="stylesheet" href="../css/Pop.css">
   <link rel="stylesheet" href="../css/Slider.css">
+  <link rel="stylesheet" href="../css/PhotoCrop.css">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
 
@@ -24,10 +26,12 @@
   <script src="../js/Pop.js" defer></script>
 
   <script type="module" src="../js/UserRegistration.js" defer></script>
+  <!-- <script type="module" src="../js/PhotoCrop.js" defer></script> -->
+
   <script src="../js/IDHelper.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.js"></script>
 
 </head>
 
@@ -65,8 +69,12 @@
   </div>
   <div class="container">
     <!-- <div class="grid"> -->
-    <form id="updateForm">
       <h1>Edit Profile</h1>
+      <div id="preview" style="width: 300px; height: 300px;">
+        <img id="image" style="display:block;" src="../images/eejo_BW.png" />
+      </div>
+
+    <form id="updateForm">
 
       <label>Swimmer ID:
         <input type="text" disabled="true" id="swimmer_id" required>
@@ -111,9 +119,16 @@
         </select>
       </label>
 
-      <label>Photo Upload:
+      <label>Photo Upload: </label>
         <img id="UploadedPhoto" style="margin-left:45%" width=100PX src="../images/profile.jpg">
         <input type="file" id="photoFile" accept="image/*">
+      
+      
+
+        <div class="controls">
+          <button type="button" onclick="cropImage()">Crop & Upload</button>
+          <button  type="button" onclick="resetCrop()">Reset</button>
+        </div>
         <progress id="photoProgress" value="0" max="100" style="width: 100%;"></progress>
         <div id="photoPreview"></div>
       </label>
@@ -201,8 +216,62 @@
       }
       // loadSwimmerData();
     }
+
+    const UploadedPhoto = document.getElementById('UploadedPhoto');
+  const image = document.getElementById('image');
+
+  UploadedPhoto.addEventListener('change', function (e) {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        image.src = event.target.result;
+        image.style.display = 'block';
+
+        if (cropper) {
+          cropper.destroy();
+        }
+
+        cropper = new Cropper(image, {
+          aspectRatio: 1,
+          viewMode: 1,
+          autoCropArea: 1,
+          responsive: true,
+        });
+      };
+      reader.readAsDataURL(files[0]);
+    }
+  });
   });
 
+
+  let cropper;
+  
+
+  function cropImage() {
+    if (cropper) {
+      const canvas = cropper.getCroppedCanvas({
+        width: 300,
+        height: 300,
+      });
+
+      // Simulate upload
+      canvas.toBlob(blob => {
+        const formData = new FormData();
+        formData.append('croppedImage', blob);
+
+        // Simulated upload
+        console.log("Simulated upload of cropped image:", formData.get('croppedImage'));
+        alert('Image cropped and ready for upload!');
+      });
+    }
+  }
+
+  function resetCrop() {
+    if (cropper) {
+      cropper.reset();
+    }
+  }
   // ReadCurrentProfile();
 
 </script>
