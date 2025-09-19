@@ -33,31 +33,39 @@ function GenerateQRWithLogo(data, canvasId, logoId, Encode = true, QRwidth = 300
 }
 
 
-function DownloadIDcard(idcardplaceholder,imagePlaceholder,name, FilePrefix="") {
+function DownloadIDcard(idcardplaceholder, imagePlaceholder, name = "User", FilePrefix = "") {
   const element = document.getElementById(idcardplaceholder);
   const img = document.getElementById(imagePlaceholder);
+
+  if (!element || !img) {
+    console.error("Element or image not found.");
+    alert("Unable to find ID card or image element.");
+    return;
+  }
+
   const promises = [];
 
-  // images.forEach(img => {
-    if (!img.complete || img.naturalWidth === 0) {
-      promises.push(new Promise(resolve => {
-        img.onload = resolve;
-        img.onerror = resolve; // Resolve even if image fails to load
-      }));
-    }
-  // });
+  if (!img.complete || img.naturalWidth === 0) {
+    promises.push(new Promise(resolve => {
+      img.onload = resolve;
+      img.onerror = resolve; // Resolve even if image fails to load
+    }));
+  }
 
   Promise.all(promises).then(() => {
     html2canvas(element, {
       useCORS: true,
       allowTaint: false,
-      logging: true
+      logging: false
     }).then(canvas => {
       const link = document.createElement('a');
       const prefix = FilePrefix ? FilePrefix + "_" : "";
-      link.download = `${name}${prefix}ID_Card.png`;
+      link.download = `${prefix}${name}_ID_Card.png`;
       link.href = canvas.toDataURL("image/png");
       link.click();
+    }).catch(error => {
+      console.error("Canvas rendering failed:", error);
+      alert("Failed to generate ID card image.");
     });
   });
 }
