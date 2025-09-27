@@ -13,14 +13,17 @@
   <link rel="stylesheet" href="../css/FitForm.css">
   <!-- <link rel="stylesheet" href="../css/GeneralStyle.css"> -->
   <link rel="stylesheet" href="../css/Pop.css">
+  <link rel="stylesheet" href="../css/PhotoCrop.css">
   <link rel="stylesheet" href="../css/Slider.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.css" rel="stylesheet"/>
 
 
 
   <script src="../js/script.js" defer></script>
   <script src="../js/Pop.js" defer></script>
   <script type="module" src="../js/UserRegistration.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.js"></script>
 
 </head>
 
@@ -108,10 +111,17 @@
       </label>
 
 
-      <label>Photo Upload:
-        <input type="file" id="photoFile" accept="image/*" required>
-        <progress id="photoProgress" value="0" max="100" style="width: 100%;"></progress>
-      </label>
+      <label>Photo Upload: </label>
+      <div id="preview">      
+        <img id="UploadedPhoto" style="display:none;">
+      </div>
+      <input type="file" id="photoFile" accept="image/*">
+      <div class="controls">          
+        <button  type="button" onclick="resetCrop()">Reset</button>
+      </div>
+      <progress id="photoProgress" value="0" max="100" style="width: 100%;"></progress>
+      <div id="photoPreview"></div>
+    </label>
 
 
       <label>School ID:
@@ -153,10 +163,36 @@
 </body>
 <script>
 
-  // let user = ReadSessionData("user")
-  // if (user) {
-  //   UpdateProfilePage(user);
-  // }
+document.addEventListener("DOMContentLoaded", function () {
+const photoFile = document.getElementById('photoFile');
+const image = document.getElementById('UploadedPhoto');
+
+photoFile.addEventListener('change', function (e) {
+const files = e.target.files;
+if (files && files.length > 0) {
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    image.src = event.target.result;
+    image.style.display = 'block';
+
+    if (cropper) {
+      cropper.destroy();
+    }
+
+    cropper = new Cropper(image, {
+      aspectRatio: 1,
+      viewMode: 1,
+      autoCropArea: 1,
+      responsive: true,
+    });
+  };
+  reader.readAsDataURL(files[0]);
+}
+});
+});
+
+
+let cropper;
 </script>
 
 </html>

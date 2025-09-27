@@ -17,14 +17,15 @@ import {
   getDownloadURL
 } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAHqPVFfpZeIkfp3A1OiMEezo4YLHukqaE",
-  authDomain: "riviera-certificates-test.firebaseapp.com",
-  projectId: "riviera-certificates-test",
-  storageBucket: "riviera-certificates-test.appspot.com",
-  messagingSenderId: "651682049198",
-  appId: "1:651682049198:web:4b956063884b86d50bd13f"
-};
+import { firebaseConfig } from "./DFBC.js";
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAHqPVFfpZeIkfp3A1OiMEezo4YLHukqaE",
+//   authDomain: "riviera-certificates-test.firebaseapp.com",
+//   projectId: "riviera-certificates-test",
+//   storageBucket: "riviera-certificates-test.appspot.com",
+//   messagingSenderId: "651682049198",
+//   appId: "1:651682049198:web:4b956063884b86d50bd13f"
+// };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -204,9 +205,9 @@ window.registerSwimmer =async function (event) {
 
   if (!photoFile || !id1File || !id2File) {
     
-    ShowMessagepop("Please upload all required files." );
+    ShowMessagepop("Please upload all required files, if you wish to Add Documents Later you can proceed" );
     // alert("Please upload all required files.");
-    return;
+    // return;
   }
   
   const duplicateName = await isDuplicateName(name);
@@ -229,10 +230,24 @@ window.registerSwimmer =async function (event) {
   try {
     
     ShowActivitypop("Uploading Documents...");
-    // const photoPath = await uploadFile(photoFile, `photos/${swimmer_id}`, "photoProgress");
-    const photoPath = await cropImage( `photos/${swimmer_id}`, "photoProgress");
-    const id1Path = await uploadFile(id1File, `ids/${swimmer_id}/id1`, "id1Progress");
-    const id2Path = await uploadFile(id2File, `ids/${swimmer_id}/id2`, "id2Progress");
+    // const photoPath = await uploadFile(photoFile, `photos/${swimmer_id}`, "photoProgress");      
+    let photoPath="";
+    
+    let id1Path="";
+    let id2Path="";
+
+    if (photoFile)
+      {
+    photoPath = await cropImage( `photos/${swimmer_id}`, "photoProgress");
+      }
+      if (id1File)
+        {
+     id1Path = await uploadFile(id1File, `ids/${swimmer_id}/id1`, "id1Progress");
+        }
+        if (id2File)
+          {
+     id2Path = await uploadFile(id2File, `ids/${swimmer_id}/id2`, "id2Progress");
+          }
 
     // const photoPath = "";
     // const id1Path = "";
@@ -469,7 +484,6 @@ window.EditSwimmer= async function (event) {
   
     const userDoc = snapshot.docs[0];
     const userRef = doc(db, "swimmers", userDoc.id);
-    const userdata= userDoc.data();
   
     await updateDoc(userRef, { 'dob':dob,
     'schoolname':schoolname,
@@ -483,9 +497,10 @@ window.EditSwimmer= async function (event) {
     'id1Path':id1Path,
     'id2Path':id2Path });
 
-    
-      
+    const userdata= userDoc.data(); 
     ShowMessagepop("Hello "  + userdata.name +  ", Profile Update successful.");
+  sessionStorage.setItem("swimmerData", JSON.stringify(userdata));
+
     // await addDoc(collection(db, "swimmers"), swimmer);
     // 
     // ShowMessagepop(" CONGRAJULATIONS!!! Swimmer registered successfully! use ID: "+swimmer_id + " For Login");
