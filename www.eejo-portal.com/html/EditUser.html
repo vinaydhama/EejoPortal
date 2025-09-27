@@ -185,10 +185,11 @@
 </body>
 
 <script>
+  let user;
   document.addEventListener("DOMContentLoaded", function () {
 
     // document.getElementById('overlaypop2').classList.add('show');
-    let user = ReadSessionData('user');
+    user= ReadSessionData('user');
     if (user) {
       UpdateProfilePage(user);
       document.getElementById("swimmer_id").value = user.swimmer_id;
