@@ -19,9 +19,7 @@
   <link rel="stylesheet" href="../css/PhotoCrop.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.css" rel="stylesheet"/>
-  
-
+  <link href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.css" rel="stylesheet" />
 
   <script src="../js/script.js" defer></script>
   <script src="../js/Pop.js" defer></script>
@@ -41,7 +39,7 @@
     <div class="profile" onclick="">
       <div class="dark-mode-toggle">
 
-        <img src="../images/profile.jpg" alt="Profile" id="UserPhoto" onclick="toggleProfilePopup()">
+        <img src="../images/profile.png" alt="Profile" id="UserPhoto" onclick="toggleProfilePopup()">
         <div class="profile-popup" id="profilePopup">
           <label id="lblUserName"> </label>
           <a href="EditUser.html">Edit Profile</a>
@@ -50,7 +48,7 @@
         </div>
       </div>
     </div>
-    <div class="logo" >
+    <div class="logo">
       <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
       <img src="../images/eejo_max.png" style="height:100px; margin-top: 0px;">
       <h1 style="align-items:start; text-align: left; margin: 5%;">
@@ -66,15 +64,9 @@
     <button onclick="location.href='Home.html'"> Home</button>
     <button onclick="location.href='event_registration.html'"> Event Registration</button>
     <button onclick="location.href='password_recovery.html'"> Password Recovery</button>
-    <button onclick="location.href='reports.html'"> Reports</button>
+    <button onclick="location.href='reports.html'"> Reports</button>    <button onclick="location.href='Eejo_Intro.html'"> Intro</button>
   </div>
   <div class="container">
-    <!-- <div class="grid"> -->
-      <!-- <h1>Edit Profile</h1>
-      <div id="preview" style="width: 300px; height: 300px;">
-        <img id="image" style="display:block;" src="../images/eejo_BW.png" />
-      </div> -->
-
     <form id="updateForm">
 
       <label>Swimmer ID:
@@ -121,26 +113,26 @@
       </label>
 
       <label>Photo Upload: </label>
-        <div id="preview">      
-          <img id="UploadedPhoto" style="display:none;">
-        </div>
-        <input type="file" id="photoFile" accept="image/*">
-        <div class="controls">          
-          <button  type="button" onclick="resetCrop()">Reset</button>
-        </div>
-        <progress id="photoProgress" value="0" max="100" style="width: 100%;"></progress>
-        <div id="photoPreview"></div>
+      <div id="preview">
+        <img id="UploadedPhoto" style="display:none;">
+      </div>
+      <input type="file" id="photoFile" accept="image/*">
+      <div class="controls">
+        <button type="button" onclick="resetCrop()">Reset</button>
+      </div>
+      <progress id="photoProgress" value="0" max="100" style="width: 100%;"></progress>
+      <div id="photoPreview"></div>
       </label>
 
       <label>ID1 Upload:
-        <img id="UploadedID1" style="margin-left:50%" width=100PX src="../images/profile.jpg">
+        <img id="UploadedID1" style="margin-left:50%" width=100PX src="../images/profile.png">
         <input type="file" id="id1File" accept="image/*">
         <progress id="id1Progress" value="0" max="100" style="width: 100%;"></progress>
         <div id="id1Preview"></div>
       </label>
 
       <label>ID2 Upload:
-        <img id="UploadedID2" style="margin-left:50%" width=100PX src="../images/profile.jpg">
+        <img id="UploadedID2" style="margin-left:50%" width=100PX src="../images/profile.png">
         <input type="file" id="id2File" accept="image/*">
         <progress id="id2Progress" value="0" max="100" style="width: 100%;"></progress>
         <div id="id2Preview"></div>
@@ -151,7 +143,7 @@
   </div>
 
   <div id="EejoIDcardDisp" class="id-card" style="display: none; color: black; background-color: rgb(219, 215, 247);">
-    <img id="ProfileImg" src="../images/profile.jpg" alt="User Photo" class="photo">
+    <img id="ProfileImg" src="../images/profile.png" alt="User Photo" class="photo">
     <h2 id="name">Vinay C.R.</h2>
     <p><strong>ID:</strong> <span id="Eid">EJ123456</span></p>
     <p><strong>DOB:</strong> <span id="Edob">2005-08-17</span></p>
@@ -167,29 +159,28 @@
     <p>&copy; 2025 <a href="www.g.com">Tiny Techniques</a> v 1.0.002</p>
   </footer>
 
- 
-  <div class="overlay" id="overlaypop" >
+  <div class="overlay" id="overlaypop">
     <div class="Msgpopup" id="ActivityPop">
-        <img id="Ejogo" style="margin: 20%;" class="EejoLogo" src="../images/eejo_max.png" alt="WWW.TinyTechniques.com">
+      <img id="Ejogo" style="margin: 20%;" class="EejoLogo" src="../images/eejo_max.png" alt="WWW.TinyTechniques.com">
       <i class="fa fa-circle-o-notch fa-spin" style="font-size:64px;color: cornflowerblue;"></i>
       <h4 id="BusyPopMsg"><b> </b></h1>
     </div>
 
     <div class="Msgpopup" id="MessagePop">
-      <h1 style="column-fill: auto; color: white; background-color: rgb(22, 1, 211); text-align: justify;">Eejo portal </h1>
+      <h1 style="column-fill: auto; color: white; background-color: rgb(22, 1, 211); text-align: justify;">Eejo portal
+      </h1>
       <p class="SlideP" id="popupMessage"></p>
       <button class="Cancelbtn" onclick="ClearAllPop()">Close</button>
     </div>
   </div>
-
 </body>
 
 <script>
   let user;
-  document.addEventListener("DOMContentLoaded", function () {
+  let cropper;
 
-    // document.getElementById('overlaypop2').classList.add('show');
-    user= ReadSessionData('user');
+  document.addEventListener("DOMContentLoaded", function () {
+    user = ReadSessionData('user');
     if (user) {
       UpdateProfilePage(user);
       document.getElementById("swimmer_id").value = user.swimmer_id;
@@ -213,65 +204,34 @@
         document.getElementById("UploadedID2").src = user.id2Path;
 
       }
-      // loadSwimmerData();
     }
 
-  const photoFile = document.getElementById('photoFile');
-  const image = document.getElementById('UploadedPhoto');
+    const photoFile = document.getElementById('photoFile');
+    const image = document.getElementById('UploadedPhoto');
 
-  photoFile.addEventListener('change', function (e) {
-    const files = e.target.files;
-    if (files && files.length > 0) {
-      const reader = new FileReader();
-      reader.onload = function (event) {
-        image.src = event.target.result;
-        image.style.display = 'block';
+    photoFile.addEventListener('change', function (e) {
+      const files = e.target.files;
+      if (files && files.length > 0) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          image.src = event.target.result;
+          image.style.display = 'block';
 
-        if (cropper) {
-          cropper.destroy();
-        }
+          if (cropper) {
+            cropper.destroy();
+          }
 
-        cropper = new Cropper(image, {
-          aspectRatio: 1,
-          viewMode: 1,
-          autoCropArea: 1,
-          responsive: true,
-        });
-      };
-      reader.readAsDataURL(files[0]);
-    }
+          cropper = new Cropper(image, {
+            aspectRatio: 1,
+            viewMode: 1,
+            autoCropArea: 1,
+            responsive: true,
+          });
+        };
+        reader.readAsDataURL(files[0]);
+      }
+    });
   });
-  });
-
-
-  let cropper;
-
-  // function cropImage() {
-  //   if (cropper) {
-  //     const canvas = cropper.getCroppedCanvas({
-  //       width: 300,
-  //       height: 300,
-  //     });
-
-  //     // Simulate upload
-  //     canvas.toBlob(blob => {
-  //       const formData = new FormData();
-  //       formData.append('croppedImage', blob);
-
-  //       // Simulated upload
-  //       console.log("Simulated upload of cropped image:", formData.get('croppedImage'));
-  //       alert('Image cropped and ready for upload!');
-  //     });
-  //   }
-  // }
-
-  // function resetCrop() {
-  //   if (cropper) {
-  //     cropper.reset();
-  //   }
-  // }
-  // // ReadCurrentProfile();
 
 </script>
-
 </html>

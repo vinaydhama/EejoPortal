@@ -378,10 +378,6 @@ window.EditSwimmer= async function (event) {
     {
       photoFile= document.getElementById("photoFile").files[0];
      photoPath = await cropImage(`photos/${swimmer_id}`, "photoProgress")
-     
-      //  photoPath = await uploadFile(photoFile, `photos/${swimmer_id}`, "photoProgress");
-
-
     }
 
     let id1File="";
@@ -427,27 +423,6 @@ window.EditSwimmer= async function (event) {
 
     }
 
-
-
-    // if (photoFile!="")
-    //   {
-    //  photoPath = await uploadFile(photoFile, `photos/${swimmer_id}`, "photoProgress");
-    //   }
-    // if (id1File!="")
-    //   {
-
-    //  id1Path = await uploadFile(id1File, `ids/${swimmer_id}/id1`, "id1Progress");
-    //   }
-    // if (id2File!="")
-    //   {
-
-    //  id2Path = await uploadFile(id2File, `ids/${swimmer_id}/id2`, "id2Progress");
-    //   }
-
-    // const photoPath = "";
-    // const id1Path = "";
-    // const id2Path = "";
-
     const swimmer = {
       swimmer_id,
       name,
@@ -467,20 +442,11 @@ window.EditSwimmer= async function (event) {
     
     ShowActivitypop("Completing update");
 
-    // const encodedNewPassword = await encodePassword(newPassword);
-
     const q = query(collection(db, "swimmers"),
       where("swimmer_id", "==", swimmer_id)      
     );
   
     const snapshot = await getDocs(q);
-  
-    // if (snapshot.empty) {
-    //   
-    //   ShowMessagepop("Details Entered is not matching, try with valid Details." );
-    //   // alert("No matching swimmer found.");
-    //   return;
-    // }
   
     const userDoc = snapshot.docs[0];
     const userRef = doc(db, "swimmers", userDoc.id);
@@ -497,20 +463,13 @@ window.EditSwimmer= async function (event) {
     'id1Path':id1Path,
     'id2Path':id2Path });
 
-    const userdata= userDoc.data(); 
-    ShowMessagepop("Hello "  + userdata.name +  ", Profile Update successful.");
-  sessionStorage.setItem("swimmerData", JSON.stringify(userdata));
-
-    // await addDoc(collection(db, "swimmers"), swimmer);
-    // 
-    // ShowMessagepop(" CONGRAJULATIONS!!! Swimmer registered successfully! use ID: "+swimmer_id + " For Login");
-    // // alert("Swimmer registered successfully! use ID: "+swimmer_id + " For Login" );
-    // document.getElementById("updateForm").reset();
+    // const userdata= userDoc.data(); 
+    ShowMessagepop("Hello "  + swimmer.name +  ", Profile Update successful.");
+    userUpdated= JSON.stringify(swimmer);
+  sessionStorage.setItem("swimmerData",userUpdated );
+  UpdateProfilePage(userUpdated);
   } catch (e) {
     console.error("Error registering swimmer:", e);
-    
     ShowMessagepop(" Registration failed. Try after sometime or contact Help desk");
-
-    // alert("Registration failed.");
   }
 };

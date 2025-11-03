@@ -36,7 +36,7 @@
     <div class="profile" onclick="">
       <div class="dark-mode-toggle">
 
-        <img src="../images/profile.jpg" alt="Profile" id="UserPhoto" onclick="toggleProfilePopup()">
+        <img src="../images/profile.png" alt="Profile" id="UserPhoto" onclick="toggleProfilePopup()">
         <div class="profile-popup" id="profilePopup">
           <label id="lblUserName"> </label>
           <a href="EditUser.html">Edit Profile</a>
@@ -61,7 +61,7 @@
     <button onclick="location.href='Home.html'"> Home</button>
     <button onclick="location.href='event_registration.html'"> Event Registration</button>
     <button onclick="location.href='password_recovery.html'"> Password Recovery</button>
-    <button onclick="location.href='reports.html'"> Reports</button>
+    <button onclick="location.href='reports.html'"> Reports</button>    <button onclick="location.href='Eejo_Intro.html'"> Intro</button>
   </div>
 
   <div class="container">
@@ -70,23 +70,23 @@
 
     <!-- <form> -->
 
-      <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-        <button title="Add Record" class="add-btn"
-          onclick="{toggleProfilePopup('AddRecodeddiv'); document.getElementById('AddRecodeddiv').scrollIntoView({ behavior: 'smooth' }); } "><i
-            class="fas fa-add"></i> </button>
-        <button title="Filter Record" class="filter-btn" onclick="{toggleProfilePopup('filters')}"><i
-            class="fas fa-filter"></i> </button>
-        <button title="Analyse " class="Analyse-btn"
-          onclick=" { document.getElementById('chartVis').innerHTML=''; toggleProfilePopup('chartContainer'); plotVisualiser();  document.getElementById('chartContainer').scrollIntoView({ behavior: 'smooth' });}"><i
-            class="fas fa-atom"></i> </button>
+    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+      <button title="Add Record" class="add-btn"
+        onclick="{toggleProfilePopup('AddRecodeddiv'); document.getElementById('AddRecodeddiv').scrollIntoView({ behavior: 'smooth' }); } "><i
+          class="fas fa-add"></i> </button>
+      <button title="Filter Record" class="filter-btn" onclick="{toggleProfilePopup('filters')}"><i
+          class="fas fa-filter"></i> </button>
+      <button title="Analyse " class="Analyse-btn"
+        onclick=" { document.getElementById('chartVis').innerHTML=''; toggleProfilePopup('chartContainer'); plotVisualiser();  document.getElementById('chartContainer').scrollIntoView({ behavior: 'smooth' });}"><i
+          class="fas fa-atom"></i> </button>
 
-        <button class="print-btn"
-          onclick="{tableToJSON('performanceTable'); window.open(`PrintReport.html`, 'Print Report ', 'width=800,height=600'); }"><i
-            class='fas fa-print'></i></button>
+      <button class="print-btn"
+        onclick="{tableToJSON('performanceTable'); window.open(`PrintReport.html`, 'Print Report ', 'width=800,height=600'); }"><i
+          class='fas fa-print'></i></button>
 
-        <!-- <button  title="Print Report" class="print-btn" onclick="{tableToJSON('performanceTable'); window.open(`PrintReport.html`, 'Print Report ', 'width=800,height=600'); }"><i class="'fas fa-print"></i> </button> -->
+      <!-- <button  title="Print Report" class="print-btn" onclick="{tableToJSON('performanceTable'); window.open(`PrintReport.html`, 'Print Report ', 'width=800,height=600'); }"><i class="'fas fa-print"></i> </button> -->
 
-      </div>
+    </div>
     <!-- </form> -->
     <div id="filters" style="display: none;">
       <div>
@@ -102,15 +102,15 @@
       <table id="performanceTable" class="table">
         <thead>
           <tr>
-            <th id="SlNoTh" >Sl.No</th>
-            <th id="Rankth" >Rank</th>
+            <th id="SlNoTh">Sl.No</th>
+            <th id="Rankth">Rank</th>
 
-            <th id="EventIDth" >Event ID</th>
+            <th id="EventIDth">Event ID</th>
             <th id="HeatDateTimeth">Heat DateTime</th>
 
-            <th id="Stroketh" >Stroke</th>
-            <th id="Distanceth" >Distance</th>
-            <th id="Timeth" >Time</th>
+            <th id="Stroketh">Stroke</th>
+            <th id="Distanceth">Distance</th>
+            <th id="Timeth">Time</th>
 
             <th id="GoodThingsth" onclick=>Good Things</th>
             <th id="ToImproveth" onclick=>To Improve</th>
@@ -215,26 +215,30 @@
         <label for="HeatDateTime">Heat DateTime</label>
         <input type="datetime-local" id="HeatDateTime" placeholder="e.g., 01:23.456">
 
-        <button type="button" id="openTimer" data-target="#recordTime" onclick="{toggleProfilePopup('timerDialog')}"> <i class="fa-solid fa-stopwatch" style="font-size:24px;"></i>  </button>
+        <button type="button" id="openTimer" data-target="#recordTime" onclick="{toggleProfilePopup('timerDialog')}"> <i
+            class="fa-solid fa-stopwatch" style="font-size:24px;"></i> </button>
         <div id="timerDialog" role="dialog" aria-modal="true" aria-labelledby="timerTitle" style="display: none;">
           <div class="dlg-header">
             <h2 id="timerTitle" class="dlg-title">Timer</h2>
             <button class="close-btn" type="button" id="closeTimer" aria-label="Close timer">x</button>
           </div>
-      
-          <div  id="display" class="timer" aria-live="polite" aria-atomic="true">00:00:00.00</div>
-      
+
+          <div id="display" class="timer" aria-live="polite" aria-atomic="true">00:00:00.00</div>
+
           <div class="grid">
             <button title="Start" id="startBtn" class="secondary" type="button"><i class="fas fa-play"></i></button>
-            <button title="Stop" id="stopBtn" class="secondary" type="button" disabled><i class="fas fa-stop"></i></button>
-            <button title="Reset" id="resetBtn" class="danger" type="button" disabled><i class="fas fa-refresh "></i></button>
+            <button title="Stop" id="stopBtn" class="secondary" type="button" disabled><i
+                class="fas fa-stop"></i></button>
+            <button title="Reset" id="resetBtn" class="danger" type="button" disabled><i
+                class="fas fa-refresh "></i></button>
             <button title="Record" id="recordBtn" type="button"><i class="fas fa-record-vinyl"></i></button>
 
           </div>
-      
-          <div class="kbd-hints">Press <kbd>S</kbd>, <kbd>T</kbd>, <kbd>R</kbd>, or <kbd>Enter</kbd>. <em>Esc</em> closes the
+
+          <div class="kbd-hints">Press <kbd>S</kbd>, <kbd>T</kbd>, <kbd>R</kbd>, or <kbd>Enter</kbd>. <em>Esc</em>
+            closes the
             dialog.</div>
-          </div>
+        </div>
 
         <label for="recordTime">Timings</label>
         <input type="text" id="recordTime" placeholder="e.g., 01:23.456">
@@ -380,7 +384,7 @@
     <p>&copy; 2025 <a href="www.g.com">Tiny Techniques</a> v 1.0.001</p>
   </footer>
 
-  
+
 
   <div class="overlay" id="overlaypop">
     <div class="Msgpopup" id="ActivityPop">
@@ -512,18 +516,6 @@
     else if (e.key === 'Enter') { e.preventDefault(); record(); }
   }
   window.addEventListener('keydown', onKeydown);
-
-  // // Open / close modal
-  // $open.addEventListener('click', (e) => {
-  //   // get the target field selector from the button (defaults to #recordTime)
-  //   targetSelector = e.currentTarget.getAttribute('data-target') || '#recordTime';
-
-  //   // optional: prevent body scroll
-  //   document.documentElement.style.overflow = 'hidden';
-  //   $dialog.showModal();
-  //   // move focus to the first button for accessibility
-  //   $start.focus();
-  // });
 
   $close.addEventListener('click', () => {
     // Stop the timer loop if running
